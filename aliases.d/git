@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Git
+if [ -x /usr/bin/git ]
+then
+  alias gs='git status'
+  alias ga='git add'
+  alias gc='git commit'
+  alias gca='git commit -a'
+  alias gp='git push'
+  alias gu='git pull'
+  alias gd='git diff'
+  alias gb='git branch'
+  alias gco='git checkout'
+  alias gw='git whatchanged'
+  alias gl='git log --graph'
+fi

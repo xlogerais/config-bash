@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# Proxy
+export TSOCKS_CONF_FILE=~/.config/tsocks/tsocks.conf

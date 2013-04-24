@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# Define prefered LANG
+export LANG=fr_FR.utf8

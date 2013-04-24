@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# System tools
+if [ -f /sbin/ifconfig ] && [ -x /sbin/ifconfig ]; then alias ifconfig='/sbin/ifconfig'; fi
+if [ -f /sbin/ip ] && [ -x /sbin/ip ]; then alias ip='/sbin/ip'; fi

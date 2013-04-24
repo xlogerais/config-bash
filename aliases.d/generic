@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Cd
+alias cdup='cd ..'
+
+# Ls
+alias ll='ls -lh'
+alias lla='ls -lha'
