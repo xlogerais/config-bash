@@ -1,0 +1,5 @@
+alias cdrepo='cd ~/repositories/'
+alias cddns='cd ~/repositories/dns'
+alias cdfai='cd ~/repositories/fai'
+alias cdpuppet='cd ~/repositories/puppet'
+alias cdshinken='cd ~/repositories/shinken'
