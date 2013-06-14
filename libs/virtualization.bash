@@ -1,6 +1,6 @@
 #!/bin/bash
 
-hypervisor_connect() { 
+hypervisor_connect() {
 
   if [ -e "${1}" ]; then echo "Usage : $0 hypervisor_name_or_ip"; return 1; fi
   hypervisor=${1}
@@ -11,7 +11,7 @@ hypervisor_connect() {
 
 }
 
-hypervisor_command() { 
+hypervisor_command() {
 
   if [ -e "${1}" ]; then echo "Usage : $0 hypervisor_name_or_ip"; return 1; fi
   hypervisor=${1}
@@ -23,7 +23,7 @@ hypervisor_command() {
 
 }
 
-vm_create() { 
+vm_create() {
 
   if [ $# -ne 5 ]; then echo "Usage : $0 hypervisor_name_or_ip vm_name vm_ram_size vm_disk_size vm_mac"; return 1; fi
   hypervisor=${1}
@@ -52,7 +52,7 @@ vm_create() {
 
 }
 
-vm_start() { 
+vm_start() {
 
   if [ $# -ne 2 ]; then echo "Usage : $0 hypervisor_name_or_ip vm_name"; return 1; fi
   hypervisor=${1}
@@ -60,11 +60,11 @@ vm_start() {
 
   echo
   echo "Trying to start ${name} on ${hypervisor} with virsh"
-  virsh --connect=qemu+ssh://${USER}@${hypervisor}/system start ${name} 
+  virsh --connect=qemu+ssh://${USER}@${hypervisor}/system start ${name}
 
 }
 
-vm_stop() { 
+vm_stop() {
 
   if [ $# -ne 2 ]; then echo "Usage : $0 hypervisor_name_or_ip vm_name"; return 1; fi
   hypervisor=${1}
@@ -72,11 +72,11 @@ vm_stop() {
 
   echo
   echo "Trying to stop ${name} on ${hypervisor} with virsh"
-  virsh --connect=qemu+ssh://${USER}@${hypervisor}/system shutdown ${name} 
+  virsh --connect=qemu+ssh://${USER}@${hypervisor}/system shutdown ${name}
 
 }
 
-vm_destroy() { 
+vm_destroy() {
 
   if [ $# -ne 2 ]; then echo "Usage : $0 hypervisor_name_or_ip vm_name"; return 1; fi
   hypervisor=${1}
@@ -84,11 +84,11 @@ vm_destroy() {
 
   echo
   echo "Trying to destroy ${name} on ${hypervisor} with virsh"
-  virsh --connect=qemu+ssh://${USER}@${hypervisor}/system destroy ${name} 
+  virsh --connect=qemu+ssh://${USER}@${hypervisor}/system destroy ${name}
 
 }
 
-vm_connect() { 
+vm_connect() {
 
   if [ $# -ne 2 ]; then echo "Usage : $0 hypervisor_name_or_ip vm_name"; return 1; fi
   hypervisor=${1}
@@ -96,28 +96,29 @@ vm_connect() {
 
   echo
   echo "Trying to connect to ${name} on ${hypervisor} with virsh"
-  virsh --connect=qemu+ssh://${USER}@${hypervisor}/system ttyconsole ${name} 
-  virsh --connect=qemu+ssh://${USER}@${hypervisor}/system console ${name} 
+  virsh --connect=qemu+ssh://${USER}@${hypervisor}/system ttyconsole ${name}
+  virsh --connect=qemu+ssh://${USER}@${hypervisor}/system console ${name}
 
 }
 
 #### A tester
-vm_change_bridge() { 
+vm_change_bridge() {
 
-  if [ $# -ne 2 ]; then echo "Usage : $0 hypervisor_name_or_ip vm_name vm_mac vm_new_bridge"; return 1; fi
+  if [ $# -ne 4 ]; then echo "Usage : $0 hypervisor_name_or_ip vm_name vm_mac vm_new_bridge"; return 1; fi
   hypervisor=${1}
   name=${2}
   mac=${3}
   bridge=${4}
 
-  #domiflist ${name}
-  #detach-interface --config --domain ${name} --type bridge --mac ${mac} 
-  #attach-interface --config --domain ${name} --type bridge --mac ${mac} --source ${bridge}
+  virsh --connect=qemu+ssh://${USER}@${hypervisor}/system domiflist ${name}
+  virsh --connect=qemu+ssh://${USER}@${hypervisor}/system detach-interface --config --domain ${name} --type bridge --mac ${mac}
+  virsh --connect=qemu+ssh://${USER}@${hypervisor}/system attach-interface --config --domain ${name} --type bridge --mac ${mac} --source ${bridge}
+  virsh --connect=qemu+ssh://${USER}@${hypervisor}/system domiflist ${name}
 
 }
 
 #### A tester
-vm_add_data_disk() { 
+vm_add_data_disk() {
 
   if [ $# -ne 2 ]; then echo "Usage : $0 hypervisor_name_or_ip vm_name size"; return 1; fi
   hypervisor=${1}
@@ -150,3 +151,4 @@ complete -W "$(_hypervisors)" vm_create
 complete -W "$(_hypervisors)" vm_start
 complete -W "$(_hypervisors)" vm_stop
 complete -W "$(_hypervisors)" vm_connect
+complete -W "$(_hypervisors)" vm_change_bridge
