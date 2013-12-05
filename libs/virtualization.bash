@@ -7,6 +7,7 @@ hypervisor_connect() {
 
   echo
   echo "Trying to start interactive virsh session on ${hypervisor}"
+  term_change_title "virsh session for ${USER} on ${hypervisor}"
   virsh --connect=qemu+ssh://${USER}@${hypervisor}/system
 
 }
@@ -96,6 +97,7 @@ vm_connect() {
 
   echo
   echo "Trying to connect to ${name} on ${hypervisor} with virsh"
+  term_change_title "virsh session for ${USER} on ${hypervisor} : ${name} console"
   virsh --connect=qemu+ssh://${USER}@${hypervisor}/system ttyconsole ${name}
   virsh --connect=qemu+ssh://${USER}@${hypervisor}/system console ${name}
 
@@ -139,7 +141,7 @@ _hypervisors() {
 		configured_hypervisors=$(cat ~/.ssh/config | egrep  -i "^\s*host\s+[a-zA-Z]" | sed -e "s/^host\s*//i" | grep -i hypervisor)
 	fi
 	if [ -e ~/.ssh/known_hosts ]; then
-		known_hypervisors=$(cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | sed -e s/,.*//g | grep -v "\[" | grep -i hypervisor | uniq)
+		known_hypervisors=$(cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | sed -e 's/,.*//g' | grep -v "\[" | grep -i hypervisor | uniq)
 	fi
 	echo $configured_hypervisors $known_hypervisors
 }
