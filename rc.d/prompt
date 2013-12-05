@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Customize the prompt
+if [ "$UID" -eq 0 ]; then
+  export PS1='\[\e[01;31m\]\u@\h\[\e[01;34m\] \w \$\[\e[0m\] '
+else
+  export PS1='\[\e[01;32m\]\u@\h\[\e[01;34m\] \w \$\[\e[0m\] '
+fi
+
+# Add a smiley at end of prompt showing last command status code
+#smiley() {
+#    ret_val=$?
+#    if [ "$ret_val" = "0" ]
+#    then
+#        echo -e "\e[01;32m:)\e[0m"
+#    else
+#        echo -e "\e[01;31m:(\e[0m"
+#    fi
+#}
+#export PS1='\[\e[01;32m\]\u@\h\[\e[01;34m\] \w \$\[\e[0m\] '"\$(smiley) "
+
