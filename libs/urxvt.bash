@@ -1,6 +1,6 @@
 #!/bin/bash
-URXVT_FONT_NAME="DejaVu Sans Mono"
-URXVT_FONT_SIZE=10
+URXVT_FONT_NAME="Terminus"
+URXVT_FONT_SIZE=8
 URXVT_FONT_INCREMENT=1
 
 function urxvt_set_font
