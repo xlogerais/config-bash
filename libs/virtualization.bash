@@ -140,7 +140,7 @@ vm_create_magick() {
   name=${2}
   ramsize=${3}
   disksize=${4}
-  IFS='.' read -a array <<< "$(ssh admin dig +search +short $1)"
+  IFS='.' read -a array <<< "$(ssh admin dig +search +short ${name})"
   ip=$(printf "%3d.%3d.%3d.%3d\n" ${array[0]} ${array[1]} ${array[2]} ${array[3]})
   mac=$(printf "52:54:00:%02X:%02X:%02X\n" ${array[1]} ${array[2]} ${array[3]})
 
