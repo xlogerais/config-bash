@@ -119,7 +119,6 @@ vm_change_bridge() {
 
 }
 
-#### A tester
 vm_add_data_disk() {
 
   if [ $# -ne 2 ]; then echo "Usage : $0 hypervisor_name_or_ip vm_name size"; return 1; fi
@@ -127,10 +126,43 @@ vm_add_data_disk() {
   name=${2}
   size=${3}
 
-  #pool-list
-  #vol-create-as --pool guests_data --name virt-cha-mirror --capacity 200G --format raw
-  #attach-disk virt-cha-mirror /dev/lvm_guests_data/virt-cha-mirror vdb --cache writethrough
-  #domblklist virt-cha-mirror
+  virsh --connect=qemu+ssh://${USER}@${hypervisor}/system  pool-list
+  virsh --connect=qemu+ssh://${USER}@${hypervisor}/system  vol-create-as --pool guests_data --name ${name} --capacity ${size} --format raw
+  virsh --connect=qemu+ssh://${USER}@${hypervisor}/system  attach-disk ${name} /dev/lvm_guests_data/${name} vdb --cache writethrough
+  virsh --connect=qemu+ssh://${USER}@${hypervisor}/system  domblklist ${name}
+
+}
+
+vm_create_magick() {
+
+  if [ $# -ne 4 ]; then echo "Usage : $0 hypervisor_name_or_ip vm_name vm_ram_size vm_disk_size"; return 1; fi
+  hypervisor=${1}
+  name=${2}
+  ramsize=${3}
+  disksize=${4}
+  IFS='.' read -a array <<< "$(ssh admin dig +search +short $1)"
+  ip=$(printf "%3d.%3d.%3d.%3d\n" ${array[0]} ${array[1]} ${array[2]} ${array[3]})
+  mac=$(printf "52:54:00:%02X:%02X:%02X\n" ${array[1]} ${array[2]} ${array[3]})
+
+
+  echo "Creating VM with virt-install"
+  echo "  * mac = ${mac}"
+  echo "  * ip = ${ip}"
+  virt-install --connect=qemu+ssh://${USER}@${hypervisor}/system \
+		           --name=${name}                                    \
+			   --description="${name}"                           \
+			   --cpu=host                                        \
+			   --ram=${ramsize}                                  \
+			   --disk=/dev/lvm_guests_system/${name},size=${disksize},bus=virtio,cache=writethrough,io=native \
+			   --network=bridge=br192,mac=${mac},model=virtio    \
+			   --os-type=linux                                   \
+			   --os-variant=debianwheezy                         \
+			   --boot=network,hd,menu=on                         \
+			   --pxe                                             \
+			   --graphics=vnc \
+			   --noautoconsole
+
+  echo "Done"
 
 }
 
@@ -154,3 +186,5 @@ complete -W "$(_hypervisors)" vm_start
 complete -W "$(_hypervisors)" vm_stop
 complete -W "$(_hypervisors)" vm_connect
 complete -W "$(_hypervisors)" vm_change_bridge
+complete -W "$(_hypervisors)" vm_add_data_disk
+complete -W "$(_hypervisors)" vm_create_magick
