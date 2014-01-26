@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Powerline
+if [ -f /usr/lib64/python3.2/site-packages/powerline/bindings/bash/powerline.sh ]
+then
+    #urxvt_set_font "Terminus for Powerline-12"
+    urxvt_set_font "DejaVu Sans Mono for Powerline-10"
+    source /usr/lib64/python3.2/site-packages/powerline/bindings/bash/powerline.sh
+fi
