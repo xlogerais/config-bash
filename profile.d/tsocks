@@ -1,4 +1,6 @@
 #!/bin/bash
 
 # Proxy
-export TSOCKS_CONF_FILE=~/.config/tsocks/tsocks.conf
+if [ -x /usr/bin/tsocks ] then
+  export TSOCKS_CONF_FILE=~/.config/tsocks/tsocks.conf
+fi
