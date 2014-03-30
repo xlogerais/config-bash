@@ -1,9 +1,14 @@
 #!/bin/bash
 
 # Powerline
-if [ -f /usr/lib64/python3.2/site-packages/powerline/bindings/bash/powerline.sh ]
+SCRIPT=/usr/lib64/python3.2/site-packages/powerline/bindings/bash/powerline.sh
+if [ -f $SCRIPT ]
 then
-    #urxvt_set_font "Terminus for Powerline-12"
-    urxvt_set_font "DejaVu Sans Mono for Powerline-10"
-    source /usr/lib64/python3.2/site-packages/powerline/bindings/bash/powerline.sh
+	if [ -n "$SSH_CONNECTION" ]
+	then
+			#urxvt_set_font "Terminus for Powerline-12"
+			export URXVT_FONT_NAME="DejaVu Sans Mono"
+			urxvt_set_font "DejaVu Sans Mono for Powerline-10"
+			source $SCRIPT
+	fi
 fi
