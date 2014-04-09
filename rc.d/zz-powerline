@@ -7,7 +7,7 @@ POWERLINE_FILE=/usr/share/powerline/bash/powerline.sh
 export URXVT_FONT_NAME="DejaVu Sans Mono for Powerline"
 export URXVT_FONT_SIZE="8"
 
-if [ -f "${POWERLINE_FILE}" ]
+if [ -f "${POWERLINE_FILE}" -a -z "$SSH_CONNECTION" ]
 then
 
     xrdb -merge <<"EOF"
