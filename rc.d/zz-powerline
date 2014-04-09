@@ -1,9 +1,25 @@
 #!/bin/bash
 
 # Powerline
-if [ -f /usr/lib64/python3.2/site-packages/powerline/bindings/bash/powerline.sh ]
+POWERLINE_FILE=/usr/share/powerline/bash/powerline.sh
+
+#export URXVT_FONT_NAME="Terminus for Powerline"
+export URXVT_FONT_NAME="DejaVu Sans Mono for Powerline"
+export URXVT_FONT_SIZE="8"
+
+if [ -f "${POWERLINE_FILE}" ]
 then
-    #urxvt_set_font "Terminus for Powerline-12"
-    urxvt_set_font "DejaVu Sans Mono for Powerline-10"
-    source /usr/lib64/python3.2/site-packages/powerline/bindings/bash/powerline.sh
+
+    xrdb -merge <<"EOF"
+XTerm*utf8:		1
+XTerm*faceName:		${URXVT_FONT_NAME}
+XTerm*faceSize:		${URXVT_FONT_SIZE}
+UXTerm*utf8:		1
+UXTerm*faceName:	${URXVT_FONT_NAME}
+UXTerm*faceSize:	${URXVT_FONT_SIZE}
+URxvt*font:             xft:${URXVT_FONT_NAME}-${URXVT_FONT_SIZE}
+EOF
+    xrdb -merge ~/.Xresources.powerline
+    urxvt_set_font "${URXVT_FONT_NAME}-${URXVT_FONT_SIZE}"
+    source ${POWERLINE_FILE}
 fi
