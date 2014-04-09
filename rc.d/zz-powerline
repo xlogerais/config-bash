@@ -3,14 +3,14 @@
 # Powerline
 POWERLINE_FILE=/usr/share/powerline/bash/powerline.sh
 
-#export URXVT_FONT_NAME="Terminus for Powerline"
-export URXVT_FONT_NAME="DejaVu Sans Mono for Powerline"
-export URXVT_FONT_SIZE="8"
-
 if [ -f "${POWERLINE_FILE}" -a -z "$SSH_CONNECTION" ]
 then
 
-    xrdb -merge <<"EOF"
+		#export URXVT_FONT_NAME="Terminus for Powerline"
+		export URXVT_FONT_NAME="DejaVu Sans Mono for Powerline"
+		export URXVT_FONT_SIZE="8"
+
+		xrdb -merge <<"EOF"
 XTerm*utf8:		1
 XTerm*faceName:		${URXVT_FONT_NAME}
 XTerm*faceSize:		${URXVT_FONT_SIZE}
@@ -19,7 +19,8 @@ UXTerm*faceName:	${URXVT_FONT_NAME}
 UXTerm*faceSize:	${URXVT_FONT_SIZE}
 URxvt*font:             xft:${URXVT_FONT_NAME}-${URXVT_FONT_SIZE}
 EOF
-    xrdb -merge ~/.Xresources.powerline
-    urxvt_set_font "${URXVT_FONT_NAME}-${URXVT_FONT_SIZE}"
-    source ${POWERLINE_FILE}
+		xrdb -merge ~/.Xresources.powerline
+
+		urxvt_set_font "${URXVT_FONT_NAME}-${URXVT_FONT_SIZE}"
+		source ${POWERLINE_FILE}
 fi
