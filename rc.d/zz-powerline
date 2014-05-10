@@ -19,7 +19,7 @@ UXTerm*faceName:	${URXVT_FONT_NAME}
 UXTerm*faceSize:	${URXVT_FONT_SIZE}
 URxvt*font:             xft:${URXVT_FONT_NAME}-${URXVT_FONT_SIZE}
 EOF
-		xrdb -merge ~/.Xresources.powerline
+		test -f ~/.Xresources.powerline && xrdb -merge ~/.Xresources.powerline
 
 		urxvt_set_font "${URXVT_FONT_NAME}-${URXVT_FONT_SIZE}"
 		source ${POWERLINE_FILE}
