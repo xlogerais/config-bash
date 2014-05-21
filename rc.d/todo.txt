@@ -2,8 +2,12 @@
 
 if [ -f ~/software/todo.txt-cli/todo.sh ]; then
 
-  source ~/software/todo.txt-cli/todo_completion
   export TODOTXT_DEFAULT_ACTION=ls
+
+  source ~/software/todo.txt-cli/todo_completion
+
+  alias todo.sh='~/software/todo.txt-cli/todo.sh'
+  complete -F _todo todo.sh
 
   alias todo='~/software/todo.txt-cli/todo.sh'
   complete -F _todo todo
