@@ -26,6 +26,8 @@ if [ -d $HOME/.bash/aliases.d ]; then for file in $(ls $HOME/.bash/aliases.d/*);
 # Source bash completion definitions
 [[ -f /etc/bash-completion ]] && source /etc/bash-completion
 [[ -f /etc/profile.d/bash-completion ]] && source /etc/profile.d/bash-completion
+[[ -f /etc/profile.d/bash-completion.sh ]] && source /etc/profile.d/bash-completion.sh
+
 if [ -f $HOME/.bash_completion ]; then source $HOME/.bash_completion; fi
 if [ -f $HOME/.bash/completion ]; then source $HOME/.bash/completion; fi
 if [ -d $HOME/.bash/completion ]; then for file in $(ls $HOME/.bash/completion/*); do source $file; done; fi

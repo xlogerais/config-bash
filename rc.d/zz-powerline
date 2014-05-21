@@ -1,14 +1,26 @@
 #!/bin/bash
 
 # Powerline
-SCRIPT=/usr/lib64/python3.2/site-packages/powerline/bindings/bash/powerline.sh
-if [ -f $SCRIPT ]
+POWERLINE_FILE=/usr/share/powerline/bash/powerline.sh
+
+if [ -f "${POWERLINE_FILE}" -a -z "$SSH_CONNECTION" ]
 then
-	if [ -n "$SSH_CONNECTION" ]
-	then
-			#urxvt_set_font "Terminus for Powerline-12"
-			export URXVT_FONT_NAME="DejaVu Sans Mono"
-			urxvt_set_font "DejaVu Sans Mono for Powerline-10"
-			source $SCRIPT
-	fi
+
+		#export URXVT_FONT_NAME="Terminus for Powerline"
+		export URXVT_FONT_NAME="DejaVu Sans Mono for Powerline"
+		export URXVT_FONT_SIZE="8"
+
+		xrdb -merge <<"EOF"
+XTerm*utf8:		1
+XTerm*faceName:		${URXVT_FONT_NAME}
+XTerm*faceSize:		${URXVT_FONT_SIZE}
+UXTerm*utf8:		1
+UXTerm*faceName:	${URXVT_FONT_NAME}
+UXTerm*faceSize:	${URXVT_FONT_SIZE}
+URxvt*font:             xft:${URXVT_FONT_NAME}-${URXVT_FONT_SIZE}
+EOF
+		test -f ~/.Xresources.powerline && xrdb -merge ~/.Xresources.powerline
+
+		urxvt_set_font "${URXVT_FONT_NAME}-${URXVT_FONT_SIZE}"
+		source ${POWERLINE_FILE}
 fi
