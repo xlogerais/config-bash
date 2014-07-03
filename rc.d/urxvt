@@ -4,8 +4,6 @@ URXVT_FONT_NAME="Terminus"
 URXVT_FONT_SIZE=8
 URXVT_FONT_INCREMENT=1
 
-urxvt_set_font "${URXVT_FONT_NAME}:size=${URXVT_FONT_SIZE}"
-
 # Quick functions
 
 zp() {
@@ -17,3 +15,5 @@ zm() {
 	URXVT_FONT_SIZE=$(echo "$URXVT_FONT_SIZE-$URXVT_FONT_INCREMENT" | bc )
 	urxvt_set_font "${URXVT_FONT_NAME}:size=${URXVT_FONT_SIZE}"
 }
+
+#urxvt_set_font "${URXVT_FONT_NAME}:size=${URXVT_FONT_SIZE}"
