@@ -9,7 +9,7 @@ if [ "$PS1" ] ; then
 		cdir=/dev/cgroup
 	fi
 
-	if [ -n "$cdir/user" ]; then
+	if [ -d "$cdir/user" ]; then
 		mkdir -p -m 0700 $cdir/user/$$ > /dev/null 2>&1
 		/bin/echo $$ > $cdir/user/$$/tasks
 		/bin/echo '1' > $cdir/user/$$/notify_on_release
