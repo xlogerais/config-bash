@@ -121,14 +121,15 @@ vm_change_bridge() {
 
 vm_add_data_disk() {
 
-  if [ $# -ne 2 ]; then echo "Usage : $0 hypervisor_name_or_ip vm_name size"; return 1; fi
+	if [ $# -ne 3 ]; then echo "Usage : $0 hypervisor_name_or_ip vm_name size (in Gb)"; return 1; fi
   hypervisor=${1}
   name=${2}
-  size=${3}
+  size=$(( ${3} * 1024 * 1024 * 1024 ))
 
   virsh --connect=qemu+ssh://${USER}@${hypervisor}/system  pool-list
+  virsh --connect=qemu+ssh://${USER}@${hypervisor}/system  domblklist ${name}
   virsh --connect=qemu+ssh://${USER}@${hypervisor}/system  vol-create-as --pool guests_data --name ${name} --capacity ${size} --format raw
-  virsh --connect=qemu+ssh://${USER}@${hypervisor}/system  attach-disk ${name} /dev/lvm_guests_data/${name} vdb --cache writethrough
+  virsh --connect=qemu+ssh://${USER}@${hypervisor}/system  attach-disk ${name} /dev/lvm_guests_data/${name} vdb --cache writethrough --persistent
   virsh --connect=qemu+ssh://${USER}@${hypervisor}/system  domblklist ${name}
 
 }
