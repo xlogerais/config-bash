@@ -1,7 +1,7 @@
 #!/bin/bash
 
-URXVT_FONT_NAME="Terminus"
-URXVT_FONT_SIZE=8
+URXVT_FONT_NAME="DejaVu Sans Mono"
+URXVT_FONT_SIZE=16
 URXVT_FONT_INCREMENT=1
 
 # Quick functions
@@ -16,4 +16,7 @@ zm() {
 	urxvt_set_font "${URXVT_FONT_NAME}:size=${URXVT_FONT_SIZE}"
 }
 
-#urxvt_set_font "${URXVT_FONT_NAME}:size=${URXVT_FONT_SIZE}"
+if [ -z "$SSH_CONNECTION" ]
+then
+		urxvt_set_font "${URXVT_FONT_NAME}:size=${URXVT_FONT_SIZE}"
+fi
