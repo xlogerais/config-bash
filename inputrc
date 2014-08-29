@@ -1,0 +1,65 @@
+# Include system config file
+$include /etc/inputrc
+
+# do not bell on tab-completion
+set bell-style none
+
+# Disable display of ^C
+set echo-control-characters off
+
+# Completion options
+set show-all-if-ambiguous on
+set show-all-if-unmodified on
+
+# History
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+
+# backword/forward during search history
+"\eq":backward-search-history
+"\es":forward-search-history
+
+# Alt+w Alt+x for beginning/end of line
+"\ew":"\C-a"
+"\ex":"\C-e"
+
+# prepend "tail -f " with Ctrl+Alt+f
+"\e\C-f":"\C-atail -f "
+"\ef":"\C-atail -f "
+
+# prepend "sudo " with Ctrl+Alt+s
+"\e\C-s":"\C-asudo "
+"\es":"\C-asudo "
+
+# prepend "yes | " with Ctrl+Alt+y
+"\e\C-y":"\C-ayes | "
+"\ey":"\C-ayes | "
+
+# append " | grep" with Ctrl+Alt+g
+"\e\C-g":"\C-e | grep "
+"\eg":"\C-e | grep "
+
+# append " | head" with Ctrl+Alt+h
+"\e\C-h":"\C-e | head"
+"\eh":"\C-e | head"
+
+# append " | tail" with Ctrl+Alt+t
+"\e\C-t":"\C-e | tail"
+"\et":"\C-e | tail"
+
+# append " | more" with Ctrl+Alt+m
+"\e\C-m":"\C-e | more"
+"\em":"\C-e | more"
+
+# append " | less" with Ctrl+Alt+l
+"\e\C-l":"\C-e | less"
+"\el":"\C-e | less"
+# we can add \C-m add the end to validate command too
+#"\e\C-m":"\C-e | less\C-m"
+
+# prepend "man " with F1 and validate
+"\e[11~":"\C-aman \C-m"
+
+# Launch commands with <F2> then letter
+"\e[12~i":"\C-k\C-uirssi\C-m"
+"\e[12~m":"\C-k\C-umutt\C-m"
