@@ -275,5 +275,5 @@ complete -W "$(_hypervisors)" vm_connect
 complete -W "$(_hypervisors)" vm_change_bridge
 complete -W "$(_hypervisors)" vm_add_data_disk
 complete -W "$(_hypervisors)" vm_create_magick
+complete -W "$(_hypervisors)" vm_create_magick2
 complete -W "$(_hypervisors)" vm_change_bridge_magick
-complete -W "$(_hypervisors)" vm_change_bridge_magick2
