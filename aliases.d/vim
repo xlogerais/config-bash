@@ -5,5 +5,5 @@ if [ -x /usr/bin/vim ]
 then
   alias vi='vim -p'
   alias view='vim -R'
-  alias vless='vim -u /usr/share/vim/vim73/macros/less.vim -c "colorscheme mustangpp"'
+  alias vless='vim -u /usr/share/vim/vim74/macros/less.vim -c "colorscheme mustangpp"'
 fi
