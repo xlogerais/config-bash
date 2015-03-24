@@ -1,4 +1,4 @@
-if [ -f /etc/gentoo-release ]
+if [ -f /etc/gentoo-release -a "$UID" -ne 0 ]
 then
 	alias emerge='sudo emerge'
 	alias etc-update='sudo etc-update'

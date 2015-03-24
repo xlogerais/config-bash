@@ -1,22 +1,22 @@
 #!/bin/bash
-
-URXVT_FONT_NAME="DejaVu Sans Mono"
-URXVT_FONT_SIZE=16
-URXVT_FONT_INCREMENT=1
-
-# Quick functions
-
-zp() {
-	URXVT_FONT_SIZE=$(echo "$URXVT_FONT_SIZE+$URXVT_FONT_INCREMENT" | bc )
-	urxvt_set_font "${URXVT_FONT_NAME}:size=${URXVT_FONT_SIZE}"
-}
-
-zm() {
-	URXVT_FONT_SIZE=$(echo "$URXVT_FONT_SIZE-$URXVT_FONT_INCREMENT" | bc )
-	urxvt_set_font "${URXVT_FONT_NAME}:size=${URXVT_FONT_SIZE}"
-}
-
-if [ -z "$SSH_CONNECTION" ]
-then
-		urxvt_set_font "${URXVT_FONT_NAME}:size=${URXVT_FONT_SIZE}"
-fi
+#
+#URXVT_FONT_NAME="DejaVu Sans Mono"
+#URXVT_FONT_SIZE=16
+#URXVT_FONT_INCREMENT=1
+#
+## Quick functions
+#
+#zp() {
+#	URXVT_FONT_SIZE=$(echo "$URXVT_FONT_SIZE+$URXVT_FONT_INCREMENT" | bc )
+#	urxvt_set_font "${URXVT_FONT_NAME}:size=${URXVT_FONT_SIZE}"
+#}
+#
+#zm() {
+#	URXVT_FONT_SIZE=$(echo "$URXVT_FONT_SIZE-$URXVT_FONT_INCREMENT" | bc )
+#	urxvt_set_font "${URXVT_FONT_NAME}:size=${URXVT_FONT_SIZE}"
+#}
+#
+#if [ -z "$SSH_CONNECTION" ]
+#then
+#		urxvt_set_font "${URXVT_FONT_NAME}:size=${URXVT_FONT_SIZE}"
+#fi
