@@ -4,7 +4,7 @@
 
 # git clone https://github.com/riywo/anyenv $HOME/.anyenv
 
-if [ -d "$HOME/.anyenv/bin" ]
+if ( which anyenv &> /dev/null )
 then
-  export PATH="$HOME/.anyenv/bin:$PATH"
+  eval "$(anyenv init -)"
 fi
