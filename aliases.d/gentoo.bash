@@ -4,4 +4,6 @@ then
 	alias etc-update='sudo etc-update'
 	alias revdep-rebuild='sudo revdep-rebuild'
 	alias eix='eix -F'
+	alias epro='sudo epro'
+	alias layman='sudo layman'
 fi
