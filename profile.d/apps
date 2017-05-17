@@ -4,5 +4,5 @@
 export TERMINAL=urxvtc
 export PAGER=less
 export EDITOR=vim
-export BROWSER=firefox
+export BROWSER=surf
 

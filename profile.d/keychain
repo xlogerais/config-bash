@@ -1,0 +1,6 @@
+#!/bin/bash
+
+if $(which keychain &> /dev/null)
+then
+  eval $(keychain --agents ssh,gpg)
+fi
