@@ -1,0 +1,25 @@
+# Auto startx depending on the VT
+
+if [[ -z "$DISPLAY" && $(id -u) -ge 1000 ]] ; then
+
+    TTY=$(tty)
+    if [ "${TTY/tty}" != "$TTY" -a $(basename ${TTY/tty}) -le 3 ]
+    then
+
+        case $(tty | cut -b9-) in
+            1) VT=vt1 ;;
+            2) VT=vt2 ;;
+            3) VT=vt3 ;;
+        esac
+
+        if ( which ck-launch-session &> /dev/null )
+        then
+            EXEC="exec ck-launch-session"
+        fi
+
+        if ( which startx &> /dev/null )
+        then
+            $EXEC startx 1> ~/.log/xsession-errors 2>&1 -- $VT
+        fi
+    fi
+fi
