@@ -1,0 +1,1 @@
+alias mc='. /usr/libexec/mc/mc-wrapper.sh'
