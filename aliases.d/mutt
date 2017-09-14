@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if (which mutt &> /dev/null); then
+  if [ "$TERM" = "rxvt-unicode" ]; then
+    alias mutt="TERM=rxvt-unicode-256color SOCKS_SERVER=10.181.176.208:1080 socksify mutt"
+  else
+    alias mutt="SOCKS_SERVER=10.181.176.208:1080 socksify mutt"
+  fi
+fi
