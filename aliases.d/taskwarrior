@@ -1,0 +1,10 @@
+# Aliases for taskwarrior
+#
+if (which task &> /dev/null)
+then
+  alias t='task'
+  alias tl='task list'
+  alias tc='task completed'
+  alias td='task done'
+  alias ts='task sync'
+fi
