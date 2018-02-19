@@ -1,5 +1,5 @@
 #!/bin/bash
 
 if (which ovs-appctl &> /dev/null); then alias appctl='sudo ovs-appctl'; fi
-if (which ovs-vsctl &> /dev/null);  then alias vsctl='sudo ovs-vsctl';  fi
-if (which ovs-ofctl &> /dev/null);  then alias ofctl='sudo ovs-ofctl';  fi
+if (which ovs-vsctl  &> /dev/null); then alias vsctl='sudo ovs-vsctl';   fi
+if (which ovs-ofctl  &> /dev/null); then alias ofctl='sudo ovs-ofctl';   fi

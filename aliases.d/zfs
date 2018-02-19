@@ -1,0 +1,4 @@
+#!/bin/bash
+
+if (which zfs   &> /dev/null); then alias zfs='sudo zfs'; fi
+if (which zpool &> /dev/null); then alias zpool='sudo zpool'; fi
