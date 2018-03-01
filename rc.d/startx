@@ -3,6 +3,7 @@
 if [[ -z "$DISPLAY" && $(id -u) -ge 1000 ]] ; then
 
     TTY=$(tty)
+    if [ "$TTY" == "not a tty" ]; then return; fi
     if [ "${TTY/tty}" != "$TTY" -a $(basename ${TTY/tty}) -le 3 ]
     then
 
