@@ -1,3 +1,0 @@
-#!/bin/bash
-
-alias cloudstation='/home/xavier/software/Synology/CloudStation/usr/bin/synology-cloud-station autostart'
