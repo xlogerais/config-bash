@@ -1,0 +1,6 @@
+# Aliases to use pygmentise
+#
+if (which pygmentize &> /dev/null)
+then
+  alias pcat='pygmentize -f terminal256 -O style=native -g'
+fi
