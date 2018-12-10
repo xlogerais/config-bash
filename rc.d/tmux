@@ -3,7 +3,7 @@
 # GNU Screen stuff
 if ( which tmux &> /dev/null )
 then
-  if [ $(pgrep "tmux" | wc -l) -gt 0 ]
+  if [ $(pgrep -u "$UID" "tmux" | wc -l) -gt 0 ]
   then
     if [[ $TERM != screen* ]]
     then
