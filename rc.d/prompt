@@ -1,10 +1,20 @@
 #!/bin/bash
 
 # Customize the prompt
-if [ "$UID" -eq 0 ]; then
-  export PS1='\[\e[01;31m\]\u@\h\[\e[01;34m\] \w \$\[\e[0m\] '
+
+if (which powerline-go &> /dev/null); then
+   function _update_ps1() {
+     PS1="$(powerline-go -error $?)"
+   }
+   if [ "$TERM" != "linux" ] ; then
+     export PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+   fi
 else
-  export PS1='\[\e[01;32m\]\u@\h\[\e[01;34m\] \w \$\[\e[0m\] '
+  if [ "$UID" -eq 0 ]; then
+    export PS1='\[\e[01;31m\]\u@\h\[\e[01;34m\] \w \$\[\e[0m\] '
+  else
+    export PS1='\[\e[01;32m\]\u@\h\[\e[01;34m\] \w \$\[\e[0m\] '
+  fi
 fi
 
 # Limit the path to 3 levels
@@ -21,4 +31,3 @@ PROMPT_DIRTRIM=3
 #    fi
 #}
 #export PS1='\[\e[01;32m\]\u@\h\[\e[01;34m\] \w \$\[\e[0m\] '"\$(smiley) "
-
