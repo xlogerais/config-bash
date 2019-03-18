@@ -20,7 +20,7 @@ else
 fi
 
 # Ignore commands with a leading space
-export HISTCONTROL="ignorespace"
+#export HISTCONTROL="ignorespace"
 
 # Append new history items to .bash_history
 shopt -s histappend
