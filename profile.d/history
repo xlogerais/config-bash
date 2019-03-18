@@ -5,4 +5,4 @@ export HISTSIZE=5000
 export HISTFILESIZE=20000
 export HISTTIMEFORMAT="[%d/%m/%Y %H:%M:%S] "
 export HISTCONTROL="ignoreboth"
-export HISTIGNORE="[bf]g:exit:history*:^rm:reboot:ls:ll:man:mutt"
+export HISTIGNORE="history*:exit:reboot:^rm:[bf]g:ls:ll:help:man:mutt:pass"
