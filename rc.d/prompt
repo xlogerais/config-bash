@@ -2,9 +2,24 @@
 
 # Customize the prompt
 
+# Limit the path to 3 levels
+PROMPT_DIRTRIM=3
+
+
+# Use powerline-go if availaible
+
+#  -modules string
+#    	 The list of modules to load, separated by ','
+#    	 (valid choices: aws, cwd, docker, dotenv, duration, exit, git, gitlite, hg, host, jobs, kube, load, newline, nix-shell, node, perlbrew, perms, root, shell-var, ssh, svn, termtitle, terraform-workspace, time, user, venv, vgo)
+#    	 (default "nix-shell,venv,user,host,ssh,cwd,perms,git,hg,jobs,exit,root,vgo")
+#  -modules-right string
+#    	 The list of modules to load anchored to the right, for shells that support it, separated by ','
+#    	 (valid choices: aws, cwd, docker, dotenv, duration, exit, git, gitlite, hg, host, jobs, kube, load
+
 if (which powerline-go &> /dev/null); then
    function _update_ps1() {
-     PS1="$(powerline-go -error $?)"
+     #eval $(powerline-go -shell bash -mode patched -modules "nix-shell,cwd,perms,jobs,git,venv,docker,kube,aws" -modules-right "exit,ssh,user,host" -newline -error $? -eval)
+     eval $(powerline-go -shell bash -mode patched -modules "nix-shell,cwd,perms,jobs,git,venv,aws,docker,kube,exit" -newline -error $? -eval)
    }
    if [ "$TERM" != "linux" ] ; then
      export PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
@@ -16,9 +31,6 @@ else
     export PS1='\[\e[01;32m\]\u@\h\[\e[01;34m\] \w \$\[\e[0m\] '
   fi
 fi
-
-# Limit the path to 3 levels
-PROMPT_DIRTRIM=3
 
 # Add a smiley at end of prompt showing last command status code
 #smiley() {
