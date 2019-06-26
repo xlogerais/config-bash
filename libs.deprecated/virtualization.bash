@@ -1,5 +1,7 @@
 #!/bin/bash
 
+which virsh || return &> /dev/null
+
 hypervisor_connect() {
 
   if [ -e "${1}" ]; then echo "Usage : $0 hypervisor_name_or_ip"; return 1; fi

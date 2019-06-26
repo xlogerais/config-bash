@@ -79,8 +79,7 @@ _source_dir_files "${BASH_CONFIG_DIR}"/aliases
 _source_dir_files "${BASH_CONFIG_DIR}"/aliases.d
 
 # Source bash completion definitions
-# TODO: Améliorer cette partie pour éviter les erreurs quand aucun fichier n'existe
-for file in /etc/bash*completion /etc/profile.d/bash*completion*; do source "$file"; done
+#for file in /etc/bash*completion /etc/profile.d/bash*completion* ; do source $file ; done
 
 _source_file_if_exists ~/.bash_completion
 _source_file_if_exists "${BASH_CONFIG_DIR}"/completion

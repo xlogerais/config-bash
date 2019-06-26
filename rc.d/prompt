@@ -7,48 +7,53 @@
 MY_PROMPTS="starship powerline-go"
 
 for prompt in $MY_PROMPTS; do
-	if (command -v "$prompt" &>/dev/null); then
-		USE_PROMPT="$prompt"
-		break
-	fi
+  if (command -v "$prompt" &>/dev/null); then
+    USE_PROMPT="$prompt"
+    break
+  fi
 done
 
 case "${USE_PROMPT}" in
 
 # https://starship.rs/
 "starship")
-	if (command -v starship &>/dev/null); then
-		eval "$(starship init bash)"
-	else
-		echo "${USE_PROMPT} command not found"
-	fi
-	;;
+  if (command -v starship &>/dev/null); then
+    eval "$(starship init bash)"
+  else
+    echo "${USE_PROMPT} command not found"
+  fi
+  ;;
 
 # https://github.com/justjanne/powerline-go
+#  -modules string
+#    	 The list of modules to load, separated by ','
+#    	 (valid choices: aws, cwd, docker, dotenv, duration, exit, git, gitlite, hg, host, jobs, kube, load, newline, nix-shell, node, perlbrew, perms, root, shell-var, ssh, svn, termtitle, terraform-workspace, time, user, venv, vgo)
+#    	 (default "nix-shell,venv,user,host,ssh,cwd,perms,git,hg,jobs,exit,root,vgo")
+#  -modules-right string
+#    	 The list of modules to load anchored to the right, for shells that support it, separated by ','
+#    	 (valid choices: aws, cwd, docker, dotenv, duration, exit, git, gitlite, hg, host, jobs, kube, load
 "powerline-go")
-	if (command -v powerline-go &>/dev/null); then
-		function _update_ps1() {
-			PS1=$(powerline-go -jobs "$(jobs -p | wc -l)" -error $? -modules "ssh,host,wsl,user,cwd,direnv,venv,perms,git,jobs,exit,root" -modules-right "docker,docker-context,kube,terraform-workspace,termtitle" -newline)
-		}
-		if [ "$TERM" != "linux" ]; then _prompt_command_add "_update_ps1"; fi
-	else
-		echo "${USE_PROMPT} command not found"
-	fi
-	;;
+  if (command -v powerline-go &>/dev/null); then
+    function _update_ps1() {
+      PS1=$(powerline-go -jobs "$(jobs -p | wc -l)" -error $? -modules "ssh,host,wsl,user,cwd,direnv,venv,perms,git,jobs,exit,root" -modules-right "docker,docker-context,kube,terraform-workspace,termtitle" -newline)
+    }
+    if [ "$TERM" != "linux" ]; then _prompt_command_add "_update_ps1"; fi
+  else
+    echo "${USE_PROMPT} command not found"
+  fi
+  ;;
 
 *)
-	# Default simple prompt
-	if [ "$UID" -eq 0 ]; then
-		export PS1='\[\e[01;31m\]\u@\h\[\e[01;34m\] \w \$\[\e[0m\] '
-	else
-		export PS1='\[\e[01;32m\]\u@\h\[\e[01;34m\] \w \$\[\e[0m\] '
-	fi
-	;;
+  # Default simple prompt
+  │ PROMPT_DIRTRIM=3 # Limit the path to 3 levels
+  if [ "$UID" -eq 0 ]; then
+    export PS1='\[\e[01;31m\]\u@\h\[\e[01;34m\] \w \$\[\e[0m\] '
+  else
+    export PS1='\[\e[01;32m\]\u@\h\[\e[01;34m\] \w \$\[\e[0m\] '
+  fi
+  ;;
 
 esac
-
-# Limit the path to 3 levels
-PROMPT_DIRTRIM=3
 
 # Add a smiley at end of prompt showing last command status code
 #smiley() {
