@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if (which kubectl &> /dev/null)
+then
+
+  # activate completion
+  source <(kubectl completion bash)
+
+  # create a quick alias
+  alias k=kubectl
+
+  # add completion for the alias as well
+  complete -o default -F __start_kubectl k
+
+fi

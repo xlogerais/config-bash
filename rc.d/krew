@@ -1,0 +1,6 @@
+#!/bin/bash
+
+if [ -d ~/.krew/bin ]
+then
+  export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+fi
