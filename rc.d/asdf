@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [ -f ~/.asdf/asdf.sh ]
+then
+
+  # activate asdf
+  source ~/.asdf/asdf.sh
+
+  # activate completion
+  source ~/.asdf/completions/asdf.bash
+
+fi
