@@ -8,8 +8,10 @@ then
 
   # create a quick alias
   alias k=kubectl
+  alias ks="kubectl --namespace kube-system"
 
   # add completion for the alias as well
   complete -o default -F __start_kubectl k
+  complete -o default -F __start_kubectl ks
 
 fi

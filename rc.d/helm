@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if (which helm &> /dev/null)
+then
+
+  # activate completion
+  source <( helm completion bash )
+
+fi

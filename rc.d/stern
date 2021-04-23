@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if (which stern &> /dev/null)
+then
+
+  # activate completion
+  source <(stern --completion bash)
+
+fi
