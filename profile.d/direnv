@@ -1,0 +1,24 @@
+#!/bin/bash
+
+if ( which asdf &> /dev/null )
+then
+
+  if ( asdf which direnv &> /dev/null )
+  then
+
+    # Hook direnv into your shell.
+    eval "$(asdf exec direnv hook bash)"
+
+    # A shortcut for asdf managed direnv.
+    direnv() { asdf exec direnv "$@"; }
+
+    return
+  fi
+
+elif ( which direnv &> /dev/null )
+then
+
+  # Hook direnv into your shell.
+  eval "$(direnv hook bash)"
+
+fi
