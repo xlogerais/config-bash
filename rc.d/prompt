@@ -2,19 +2,31 @@
 
 # Customize the prompt
 
-if (which powerline-go &> /dev/null); then
-   function _update_ps1() {
-     PS1="$(powerline-go -error $?)"
-   }
-   if [ "$TERM" != "linux" ] ; then
-     export PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
-   fi
+if (which powerline &> /dev/null); then
+
+  function _update_ps1() {
+    PS1="$(powerline -error $? -jobs $(jobs -p | wc -l))"
+
+    # Uncomment the following line to automatically clear errors after showing
+    # them once. This not only clears the error for powerline-go, but also for
+    # everything else you run in that shell. Don't enable this if you're not
+    # sure this is what you want.
+
+    #set "?"
+  }
+
+  if [ "$TERM" != "linux" ]; then
+      PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+  fi
+
 else
+
   if [ "$UID" -eq 0 ]; then
     export PS1='\[\e[01;31m\]\u@\h\[\e[01;34m\] \w \$\[\e[0m\] '
   else
     export PS1='\[\e[01;32m\]\u@\h\[\e[01;34m\] \w \$\[\e[0m\] '
   fi
+
 fi
 
 # Limit the path to 3 levels
