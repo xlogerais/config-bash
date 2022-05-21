@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if (which lsd &> /dev/null)
+then
+
+  # create a aliases
+  alias ls='lsd'
+  alias lt='lsd --tree'
+
+fi
