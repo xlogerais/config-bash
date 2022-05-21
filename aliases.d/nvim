@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Vim Editor
+if [ -x ~/AppImages/nvim.appimage ]
+then
+  alias nvim='~/AppImages/nvim.appimage'
+fi

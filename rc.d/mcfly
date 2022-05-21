@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if (which mcfly &> /dev/null)
+then
+  export MCFLY_INTERFACE_VIEW=BOTTOM
+  export MCFLY_RESULTS=25
+  export MCFLY_RESULTS_SORT=LAST_RUN
+  eval "$(mcfly init bash)"
+fi
