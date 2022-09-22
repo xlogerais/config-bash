@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Defined prefered applications
-export TERMINAL=urxvtc
+export TERMINAL=kitty
 export PAGER=less
-export EDITOR=vim
-export BROWSER=surf
+export EDITOR=nvim
+export BROWSER=firefox
 
