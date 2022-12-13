@@ -2,31 +2,40 @@
 
 # Customize the prompt
 
-POWERLINE=$(which powerline || which powerline-go) &> /dev/null
-if [ -x "$POWERLINE" ]; then
+POWERLINE_LOCATION=$(command -v powerline-go || command -v powerline) &>/dev/null
+POWERLINE=$(basename "$POWERLINE_LOCATION")
 
-  function _update_ps1() {
-    PS1="$($POWERLINE -error $? -jobs $(jobs -p | wc -l))"
+if [ "${POWERLINE}" = "powerline-go" ]; then
 
-    # Uncomment the following line to automatically clear errors after showing
-    # them once. This not only clears the error for powerline-go, but also for
-    # everything else you run in that shell. Don't enable this if you're not
-    # sure this is what you want.
+	echo "Using $POWERLINE"
 
-    #set "?"
-  }
+	function _update_ps1() {
+		PS1=$($POWERLINE -jobs "$(jobs -p | wc -l)" -error $? -modules "ssh,host,wsl,user,cwd,direnv,venv,perms,git,jobs,exit,root" -modules-right "docker,docker-context,kube,terraform-workspace" -newline)
+	}
 
-  if [ "$TERM" != "linux" ]; then
-      PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
-  fi
+	if [ "$TERM" != "linux" ]; then PROMPT_COMMAND="$PROMPT_COMMAND; _update_ps1"; fi
+
+elif [ "${POWERLINE}" = "powerline" ]; then
+
+	echo "Using $POWERLINE"
+
+	# Run powerline daemon
+	powerline-daemon -q
+	# Cache powerline location
+	# To locate this directory, run: pip show powerline-status
+	export POWERLINE_LOCATION="/home/xavier/.local/lib/python3.10//site-packages/powerline" # Set up powerline environment
+	export POWERLINE_CONFIG_COMMAND=powerline-config
+	export POWERLINE_BASH_CONTINUATION=1
+	export POWERLINE_BASH_SELECT=1# Invoke binding script
+	. "$POWERLINE_LOCATION/bindings/bash/powerline.sh"
 
 else
 
-  if [ "$UID" -eq 0 ]; then
-    export PS1='\[\e[01;31m\]\u@\h\[\e[01;34m\] \w \$\[\e[0m\] '
-  else
-    export PS1='\[\e[01;32m\]\u@\h\[\e[01;34m\] \w \$\[\e[0m\] '
-  fi
+	if [ "$UID" -eq 0 ]; then
+		export PS1='\[\e[01;31m\]\u@\h\[\e[01;34m\] \w \$\[\e[0m\] '
+	else
+		export PS1='\[\e[01;32m\]\u@\h\[\e[01;34m\] \w \$\[\e[0m\] '
+	fi
 
 fi
 
