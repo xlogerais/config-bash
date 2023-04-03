@@ -1,9 +1,16 @@
 #!/bin/bash
 
 # Vim Editor
-if [ -x /usr/bin/vim ]
+if (command -v lvim &> /dev/null)
 then
-  alias vi='vim -p'
-  alias view='vim -R'
-  alias vless='vim -u /usr/share/vim/vim*/macros/less.vim'
+  alias vim=lvim
+elif (command -v nvim &> /dev/null)
+then
+  alias vim=nvim
 fi
+# if [ -x /usr/bin/vim ]
+# then
+#   alias vi='vim -p'
+#   alias view='vim -R'
+#   alias vless='vim -u /usr/share/vim/vim*/macros/less.vim'
+# fi
