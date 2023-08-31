@@ -1,0 +1,6 @@
+#!/bin/bash
+
+if (command -v 'gopass' && ! command -v pass ) &> /dev/null
+then
+  alias pass='gopass'
+fi
