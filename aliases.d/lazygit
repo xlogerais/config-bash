@@ -1,0 +1,5 @@
+# Lazygit
+if ( which lazygit &> /dev/null )
+then
+  alias lg='lazygit'
+fi
