@@ -1,13 +1,17 @@
 #!/bin/bash
 
 # Vim Editor
-if (command -v lvim &> /dev/null)
-then
-  alias vim=lvim
-elif (command -v nvim &> /dev/null)
+if (command -v nvim &> /dev/null)
 then
   alias vim=nvim
 fi
+
+# if (command -v lvim &>/dev/null); then
+# 	alias vim=lvim
+# elif (command -v nvim &>/dev/null); then
+# 	alias vim=nvim
+# fi
+
 # if [ -x /usr/bin/vim ]
 # then
 #   alias vi='vim -p'
