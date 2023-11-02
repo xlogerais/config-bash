@@ -10,7 +10,7 @@ if [ "${POWERLINE}" = "powerline-go" ]; then
 	echo "Using $POWERLINE"
 
 	function _update_ps1() {
-		PS1=$($POWERLINE -jobs "$(jobs -p | wc -l)" -error $? -modules "ssh,host,wsl,user,cwd,direnv,venv,perms,git,jobs,exit,root" -modules-right "docker,docker-context,kube,terraform-workspace" -newline)
+		PS1=$($POWERLINE -jobs "$(jobs -p | wc -l)" -error $? -modules "ssh,host,wsl,user,cwd,direnv,venv,perms,git,jobs,exit,root" -modules-right "docker,docker-context,kube,terraform-workspace,termtitle" -newline)
 	}
 
 	if [ "$TERM" != "linux" ]; then PROMPT_COMMAND="$PROMPT_COMMAND; _update_ps1"; fi

@@ -1,4 +1,0 @@
-#!/bin/bash
-
-# Defined prefered applications
-export XDG_RUNTIME_DIR=$HOME/.cache
