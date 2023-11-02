@@ -1,0 +1,5 @@
+#!/bin/bash
+
+if (command -v git && command -v fzf) &>/dev/null; then
+    function gsb { git checkout "$(git branch --all | fzf | tr -d '[:space:]')"; }
+fi
