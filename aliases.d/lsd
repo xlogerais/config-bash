@@ -1,5 +1,6 @@
-# LSD
-if ( command -v lsd &> /dev/null )
+#!/bin/bash
+
+if (command -v lsd &> /dev/null)
 then
-  alias ls='lsd'
+  alias ls=lsd
 fi

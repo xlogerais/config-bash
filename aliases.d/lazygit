@@ -1,5 +1,6 @@
-# Lazygit
-if ( which lazygit &> /dev/null )
+#/bin/bash
+
+if (command -v lazygit &> /dev/null)
 then
-  alias lg='lazygit'
+  alias lg=lazygit
 fi
