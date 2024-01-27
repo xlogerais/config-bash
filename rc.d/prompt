@@ -13,7 +13,7 @@ if [ "${POWERLINE}" = "powerline-go" ]; then
 		PS1=$($POWERLINE -jobs "$(jobs -p | wc -l)" -error $? -modules "ssh,host,wsl,user,cwd,direnv,venv,perms,git,jobs,exit,root" -modules-right "docker,docker-context,kube,terraform-workspace,termtitle" -newline)
 	}
 
-	if [ "$TERM" != "linux" ]; then PROMPT_COMMAND="$PROMPT_COMMAND; _update_ps1"; fi
+	if [ "$TERM" != "linux" ]; then _prompt_command_add "_update_ps1" ; fi
 
 elif [ "${POWERLINE}" = "powerline" ]; then
 
