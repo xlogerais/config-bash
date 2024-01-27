@@ -2,7 +2,7 @@
 
 _prompt_command_add() {
     if [ -n "$1" ] && [[ ":$PROMPT_COMMAND:" != *":$1:"* ]]; then
-        PROMPT_COMMAND="${PROMPT_COMMAND:+"$PROMPT_COMMAND:"}$1"
+        PROMPT_COMMAND="${PROMPT_COMMAND:+"$PROMPT_COMMAND;"}$1"
     fi
 }
 
