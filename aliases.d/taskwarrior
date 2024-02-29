@@ -1,6 +1,7 @@
+#
 # Aliases for taskwarrior
 #
-if (which task &> /dev/null)
+if (command -v task &> /dev/null)
 then
   alias t='task'
   alias tl='task list'

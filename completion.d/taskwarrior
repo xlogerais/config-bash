@@ -1,0 +1,7 @@
+#
+# Completion for taskwarrior
+#
+if (command -v task &> /dev/null)
+then
+  complete -o nospace -F _task t
+fi
