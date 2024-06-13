@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if (command -v mise &>/dev/null); then
+
+	# activate mise-en-place (https://mise.jdx.dev/)
+	eval "$(mise activate bash)"
+
+fi
