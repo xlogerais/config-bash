@@ -1,9 +1,11 @@
 #!/bin/bash
 
-if (which mcfly &> /dev/null)
-then
-  export MCFLY_INTERFACE_VIEW=BOTTOM
-  export MCFLY_RESULTS=25
-  export MCFLY_RESULTS_SORT=LAST_RUN
-  eval "$(mcfly init bash)"
+if (which mcfly &>/dev/null); then
+	export MCFLY_PROMPT="❯"
+	export MCFLY_INTERFACE_VIEW=BOTTOM
+	export MCFLY_RESULTS=50
+	export MCFLY_RESULTS_SORT=LAST_RUN
+	# export MCFLY_KEY_SCHEME=vim
+	export MCFLY_FUZZY=3
+	eval "$(mcfly init bash)"
 fi
