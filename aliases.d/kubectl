@@ -1,14 +1,16 @@
 #!/bin/bash
 
-if (command -v kubectl &> /dev/null)
-then
+if (command -v kubectl &>/dev/null); then
 
-  # create a quick alias
-  alias k=kubectl
-  alias ks="kubectl --namespace kube-system"
+	# create some usefull aliases
+	alias k="kubectl"
+	alias kg="kubectl get"
+	alias kd="kubectl describe"
+	alias ks="kubectl --namespace kube-system"
+	alias kga="kubectl get --all-namespaces"
 
-  # add completion for the alias as well
-  complete -o default -F __start_kubectl k
-  complete -o default -F __start_kubectl ks
+	# add completion for the alias as well
+	complete -o default -F __start_kubectl k
+	complete -o default -F __start_kubectl ks
 
 fi
