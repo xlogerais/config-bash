@@ -1,0 +1,5 @@
+#!/bin/bash
+
+if (command -v mise &>/dev/null); then
+	source <(mise completion bash)
+fi
