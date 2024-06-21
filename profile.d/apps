@@ -1,8 +1,24 @@
 #!/bin/bash
 
 # Defined prefered applications
-export TERMINAL=kitty
-export PAGER=less
-export EDITOR=nvim
-export BROWSER=firefox
 
+# EDITOR
+if (command -v nvim &>/dev/null); then
+	export EDITOR=nvim
+fi
+
+# PAGER
+export PAGER=less
+
+# MANPAGER
+if (command -v nvim &>/dev/null); then
+	export MANPAGER='nvim +Man!'
+elif (command -v bat &>/dev/null); then
+	export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+fi
+
+# TERMINAL
+export TERMINAL=kitty
+
+# BROWSER
+export BROWSER=firefox
