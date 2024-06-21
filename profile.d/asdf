@@ -9,3 +9,8 @@ if [ -f ~/.asdf/asdf.sh ]; then
 	source ~/.asdf/completions/asdf.bash
 
 fi
+
+if [ -f "$HOME/.nix-profile/share/asdf-vm/asdf.sh" ]; then
+	. "$HOME/.nix-profile/share/asdf-vm/asdf.sh"
+	. "$HOME/.nix-profile/share/bash-completion/completions/asdf.bash"
+fi
