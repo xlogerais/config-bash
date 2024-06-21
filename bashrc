@@ -14,6 +14,9 @@ fi
 # Source custom libs
 if [ -d "$HOME"/.bash/libs ]; then for lib in "$HOME"/.bash/libs/*.bash; do source "$lib"; done; fi
 
+# Early customization
+if [ -d "$HOME"/.bash/rc.before.d ]; then for file in "$HOME"/.bash/rc.before.d/*; do source "$file"; done; fi
+
 # Source rc.d/*
 if [ -d "$HOME"/.bash/rc.d ]; then for file in "$HOME"/.bash/rc.d/*; do source "$file"; done; fi
 
@@ -30,3 +33,6 @@ if [ -f "$HOME"/.bash_completion ]; then source "$HOME"/.bash_completion; fi
 if [ -f "$HOME"/.bash/completion ]; then source "$HOME"/.bash/completion; fi
 if [ -d "$HOME"/.bash/completion ]; then for file in "$HOME"/.bash/completion/*; do source "$file"; done; fi
 if [ -d "$HOME"/.bash/completion.d ]; then for file in "$HOME"/.bash/completion.d/*; do source "$file"; done; fi
+
+# Late customization
+if [ -d "$HOME"/.bash/rc.after.d ]; then for file in "$HOME"/.bash/rc.after.d/*; do source "$file"; done; fi

@@ -1,0 +1,3 @@
+#!/bin/bash
+
+[[ ${BLE_VERSION-} ]] && ble-attach
