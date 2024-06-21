@@ -2,42 +2,41 @@
 
 # Customize the prompt
 
-POWERLINE_LOCATION=$(command -v powerline-go || command -v powerline) &>/dev/null
-POWERLINE=$(basename "$POWERLINE_LOCATION")
+USE_PROMPT=powerline-go
 
-if [ "${POWERLINE}" = "powerline-go" ]; then
+case "$USE_PROMPT" in
 
-	echo "Using $POWERLINE"
+"starship")
+	if (command -v starship &>/dev/null); then
+		# echo "Using $USE_PROMPT prompt"
+		eval "$(starship init bash)"
+	else
+		echo "$USE_PROMPT command not found"
+	fi
+	;;
 
-	function _update_ps1() {
-		PS1=$($POWERLINE -jobs "$(jobs -p | wc -l)" -error $? -modules "ssh,host,wsl,user,cwd,direnv,venv,perms,git,jobs,exit,root" -modules-right "docker,docker-context,kube,terraform-workspace,termtitle" -newline)
-	}
+"powerline-go")
+	if (command -v powerline-go &>/dev/null); then
+		# echo "Using $USE_PROMPT prompt"
+		function _update_ps1() {
+			PS1=$(powerline-go -jobs "$(jobs -p | wc -l)" -error $? -modules "ssh,host,wsl,user,cwd,direnv,venv,perms,git,jobs,exit,root" -modules-right "docker,docker-context,kube,terraform-workspace,termtitle" -newline)
+		}
+		if [ "$TERM" != "linux" ]; then _prompt_command_add "_update_ps1"; fi
+	else
+		echo "$USE_PROMPT command not found"
+	fi
+	;;
 
-	if [ "$TERM" != "linux" ]; then _prompt_command_add "_update_ps1" ; fi
-
-elif [ "${POWERLINE}" = "powerline" ]; then
-
-	echo "Using $POWERLINE"
-
-	# Run powerline daemon
-	powerline-daemon -q
-	# Cache powerline location
-	# To locate this directory, run: pip show powerline-status
-	export POWERLINE_LOCATION="/home/xavier/.local/lib/python3.10//site-packages/powerline" # Set up powerline environment
-	export POWERLINE_CONFIG_COMMAND=powerline-config
-	export POWERLINE_BASH_CONTINUATION=1
-	export POWERLINE_BASH_SELECT=1# Invoke binding script
-	. "$POWERLINE_LOCATION/bindings/bash/powerline.sh"
-
-else
-
+*)
+	# Default simple prompt
 	if [ "$UID" -eq 0 ]; then
 		export PS1='\[\e[01;31m\]\u@\h\[\e[01;34m\] \w \$\[\e[0m\] '
 	else
 		export PS1='\[\e[01;32m\]\u@\h\[\e[01;34m\] \w \$\[\e[0m\] '
 	fi
+	;;
 
-fi
+esac
 
 # Limit the path to 3 levels
 PROMPT_DIRTRIM=3
