@@ -11,6 +11,9 @@ if [[ $- != *i* ]]; then
 	return
 fi
 
+# Safe loops for empty dirs
+shopt -s nullglob
+
 # Source custom libs
 if [ -d "$HOME"/.bash/libs ]; then for lib in "$HOME"/.bash/libs/*.bash; do source "$lib"; done; fi
 
@@ -36,3 +39,6 @@ if [ -d "$HOME"/.bash/completion.d ]; then for file in "$HOME"/.bash/completion.
 
 # Late customization
 if [ -d "$HOME"/.bash/rc.after.d ]; then for file in "$HOME"/.bash/rc.after.d/*; do source "$file"; done; fi
+
+# Restore option nullglob to normal
+shopt -u nullglob
