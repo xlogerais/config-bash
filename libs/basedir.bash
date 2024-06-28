@@ -1,5 +1,5 @@
 #!/bin/bash
 
 function basedir() {
-  echo $( cd $(dirname $0) && pwd )
+  (cd "$(dirname \"$-2\")" && pwd)
 }
