@@ -9,15 +9,7 @@ if (command -v kubectl &>/dev/null); then
 	alias ks="kubectl --namespace kube-system"
 	alias kga="kubectl get --all-namespaces"
 	alias kuc="kubectl config unset current-context"
+	alias kun="kubectl config set-context --current --namespace="
 	alias kgworkers="kubectl get nodes --selector '!node-role.kubernetes.io/control-plane' --label-columns heat,topology.kubernetes.io/zone,topology.kubernetes.io/region --sort-by metadata.labels.heat"
-
-	# add completion for the alias as well
-	complete -o default -F __start_kubectl k
-	complete -o default -F __start_kubectl ks
-
-	# Experimental
-	complete -o default -F _complete_alias kg
-	complete -o default -F _complete_alias kd
-	complete -o default -F _complete_alias kga
 
 fi
