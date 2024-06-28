@@ -1,6 +1,5 @@
-alias cdrepo='cd ~/repositories/'
-alias cddns='cd ~/repositories/dns && git pull'
-alias cdfai='cd ~/repositories/fai && git pull'
-alias cdpuppet='cd ~/repositories/puppet && git pull'
-alias cdhiera='cd ~/repositories/hiera && git pull'
-alias cdshinken='cd ~/repositories/shinken && git pull'
+alias cdrepo='cd ~/Repositories/'
+alias cdgitlab='cd ~/Repositories/Gitlab'
+alias cdgithub='cd ~/Repositories/Github'
+alias cdgl=cdgitlab
+alias cdgh=cdgithub
