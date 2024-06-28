@@ -9,3 +9,8 @@ then
   alias td='task done'
   alias ts='task sync'
 fi
+
+if (command -v taskwarrior-tui &> /dev/null)
+then
+  alias tu='taskwarrior-tui'
+fi

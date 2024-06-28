@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
+
 if [ -f "$HOME"/.bash/profile ]; then source "$HOME"/.bash/profile; fi
 if [ -d "$HOME"/.bash/profile ]; then for file in "$HOME"/.bash/profile/*; do source "$file"; done; fi
 if [ -d "$HOME"/.bash/profile.d ]; then for file in "$HOME"/.bash/profile.d/*; do source "$file"; done; fi
