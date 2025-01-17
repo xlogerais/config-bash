@@ -1,0 +1,6 @@
+[submodule "3rd-party/z"]
+	path = 3rd-party/z
+	url = https://github.com/rupa/z.git
+[submodule "3rd-party/complete-alias"]
+	path = 3rd-party/complete-alias
+	url = https://github.com/cykerway/complete-alias.git
