@@ -1,6 +1,5 @@
 #!/bin/bash
 
-if $(which keychain &> /dev/null)
-then
-  eval $(keychain --agents ssh,gpg --eval)
+if (command -v keychain &>/dev/null); then
+  eval "$(keychain --eval --noask ~/.ssh/{id_ed25519,id_rsa_native})"
 fi
