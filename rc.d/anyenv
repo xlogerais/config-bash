@@ -4,7 +4,6 @@
 
 # git clone https://github.com/riywo/anyenv $HOME/.anyenv
 
-if ( which anyenv &> /dev/null )
-then
+if (which anyenv &>/dev/null); then
   eval "$(anyenv init -)"
 fi
