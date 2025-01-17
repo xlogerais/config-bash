@@ -8,7 +8,9 @@ if (command -v nvim &>/dev/null); then
 fi
 
 # PAGER
-export PAGER=less
+if (command -v less &>/dev/null); then
+	export PAGER=less
+fi
 
 # MANPAGER
 if (command -v nvim &>/dev/null); then
@@ -18,7 +20,11 @@ elif (command -v bat &>/dev/null); then
 fi
 
 # TERMINAL
-export TERMINAL=kitty
+if (command -v kitty &>/dev/null); then
+	export TERMINAL=kitty
+fi
 
 # BROWSER
-export BROWSER=firefox
+if (command -v firefox &>/dev/null); then
+	export BROWSER=firefox
+fi
