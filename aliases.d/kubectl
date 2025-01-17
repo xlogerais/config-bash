@@ -6,10 +6,16 @@ if (command -v kubectl &>/dev/null); then
 	alias k="kubectl"
 	alias kg="kubectl get"
 	alias kd="kubectl describe"
+
 	alias ks="kubectl --namespace kube-system"
+	alias ksg="kubectl --namespace kube-system get"
+	alias ksd="kubectl --namespace kube-system describe"
 	alias kga="kubectl get --all-namespaces"
 	alias kuc="kubectl config unset current-context"
 	alias kun="kubectl config set-context --current --namespace="
-	alias kgworkers="kubectl get nodes --selector '!node-role.kubernetes.io/control-plane' --label-columns heat,topology.kubernetes.io/zone,topology.kubernetes.io/region --sort-by metadata.labels.heat"
 
+	alias kgnodes="kubectl get nodes --label-columns topology.kubernetes.io/region,topology.kubernetes.io/zone"
+	alias kgmasters="kubectl get nodes --selector 'node-role.kubernetes.io/control-plane' --label-columns topology.kubernetes.io/region,topology.kubernetes.io/zone"
+	alias kgworkers="kubectl get nodes --selector '!node-role.kubernetes.io/control-plane' --label-columns topology.kubernetes.io/region,topology.kubernetes.io/zone"
+	alias kgtaints="kubectl get nodes --output custom-columns=NAME:.metadata.name,TAINTS:.spec.taints"
 fi
