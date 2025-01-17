@@ -1,17 +1,14 @@
 #!/bin/bash
 
 # GNU Screen stuff
-if ( which tmux &> /dev/null )
-then
-  if [ $(pgrep -u "$UID" "tmux" | wc -l) -gt 0 ]
-  then
-    if [[ $TERM != screen* ]]
-    then
+if (command -v tmux &>/dev/null); then
+  if [ "$(pgrep -u "$UID" "tmux" | wc -l)" -gt 0 ]; then
+    if [[ $TERM != screen* ]]; then
       nb_sessions=$(tmux list-session | wc -l)
-      nb_sessions_attached=$(tmux list-session | grep "attached" | wc -l)
-      nb_sessions_detached=$(tmux list-session | grep -v "attached" | wc -l)
+      nb_sessions_attached=$(tmux list-session | grep -c "attached")
+      nb_sessions_detached=$(tmux list-session | grep -c -v "attached")
 
-      echo_reverse "Found ${nb_sessions} tmux session(s)"
+      echo_info "Found ${nb_sessions} tmux session(s)"
 
       echo " * ${nb_sessions_attached} attached"
       tmux list-sessions | grep "attached" | sed -e 's/^/     - /'
@@ -22,4 +19,3 @@ then
     fi
   fi
 fi
-
