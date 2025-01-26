@@ -1,5 +1,5 @@
 #!/bin/bash
 
 if (command -v mise &>/dev/null); then
-	source <(mise completion bash)
+	source <(mise completion bash --include-bash-completion-lib)
 fi
