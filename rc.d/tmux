@@ -8,13 +8,13 @@ if (command -v tmux &>/dev/null); then
       nb_sessions_attached=$(tmux list-session | grep -c "attached")
       nb_sessions_detached=$(tmux list-session | grep -c -v "attached")
 
-      echo_info "Found ${nb_sessions} tmux session(s)"
+      echo_info "tmux : found ${nb_sessions} session(s)"
 
-      echo " * ${nb_sessions_attached} attached"
-      tmux list-sessions | grep "attached" | sed -e 's/^/     - /'
+      echo "➤ ${nb_sessions_attached} session(s) attached"
+      tmux list-sessions | grep "attached" | sed -e 's/^/    • /'
 
-      echo " * ${nb_sessions_detached} detached"
-      tmux list-sessions | grep -v "attached" | sed -e 's/^/     - /'
+      echo "➤ ${nb_sessions_detached} session(s) detached"
+      tmux list-sessions | grep -v "attached" | sed -e 's/^/    • /'
 
     fi
   fi
