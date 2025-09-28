@@ -28,7 +28,6 @@ _source_dir_files "${BASEDIR}"/libs
 
 # Source 3rd party libs if they exists
 _source_file_if_exists "${BASEDIR}/3rd-party/complete-alias/complete_alias"
-# _source_file_if_exists "${BASEDIR}/3rd-party/z/z.sh" # FIX: Problème de gestion de la variable PROMPT_COMMAND
 
 # Early customization
 _source_dir_files "${BASEDIR}"/rc.before.d
