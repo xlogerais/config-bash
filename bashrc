@@ -36,6 +36,12 @@ _source_dir_files "${BASEDIR}"/rc.before.d
 _source_dir_files "${BASEDIR}"/rc
 _source_dir_files "${BASEDIR}"/rc.d
 
+# Source functions definitions
+_source_file_if_exists ~/.bash_functions
+_source_file_if_exists "${BASEDIR}"/functions
+_source_dir_files "${BASEDIR}"/functions
+_source_dir_files "${BASEDIR}"/functions.d
+
 # Source alias definitions
 _source_file_if_exists ~/.bash_aliases
 _source_file_if_exists "${BASEDIR}"/aliases
