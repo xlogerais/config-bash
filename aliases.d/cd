@@ -1,5 +1,7 @@
 alias cdrepo='cd ~/Repositories/'
-alias cdgitlab='cd ~/Repositories/Gitlab'
 alias cdgithub='cd ~/Repositories/Github'
-alias cdgl=cdgitlab
+alias cdgitlab='cd ~/Repositories/Gitlab'
+alias cdgitea='cd ~/Repositories/Gitea'
 alias cdgh=cdgithub
+alias cdgl=cdgitlab
+alias cdgt=cdgitea
