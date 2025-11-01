@@ -4,28 +4,31 @@ if (command -v fzf &>/dev/null); then
 
   source <(fzf --bash)
 
-  # Selection de fichiers
-  export FZF_CTRL_T_OPTS="--height 60% \
---border sharp \
---layout reverse \
---prompt '󰈞 ' \
---pointer ❯ \
---marker ✔"
-
   # Navigation vers un répertoire
-  export FZF_ALT_C_OPTS="--height 60% \
---border sharp \
---layout reverse \
---prompt '󰥨 ' \
---pointer ❯ \
---marker ✔"
+  export FZF_ALT_C_OPTS="\
+  --height 60% \
+  --border sharp \
+  --layout reverse \
+  --prompt '󰥨 ' \
+  --pointer ❯ \
+  --marker ✔"
+
+  # Selection de fichiers
+  export FZF_CTRL_T_OPTS="\
+  --height 60% \
+  --border sharp \
+  --layout reverse \
+  --prompt '󰈞 ' \
+  --pointer ❯ \
+  --marker ✔"
 
   # Navigation dans l'historique
-  export FZF_CTRL_R_OPTS="--height 60% \
---border sharp \
---layout reverse \
---prompt ' ' \
---pointer ❯ \
---marker ✔"
+  export FZF_CTRL_R_OPTS="\
+  --height 60% \
+  --border sharp \
+  --layout reverse \
+  --prompt ' ' \
+  --pointer ❯ \
+  --marker ✔"
 
 fi
