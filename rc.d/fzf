@@ -5,30 +5,43 @@ if (command -v fzf &>/dev/null); then
   source <(fzf --bash)
 
   # Navigation vers un répertoire
-  export FZF_ALT_C_OPTS="\
-  --height 60% \
-  --border sharp \
-  --layout reverse \
-  --prompt '󰥨 ' \
-  --pointer ❯ \
-  --marker ✔"
+  FZF_ALT_C_OPTS="$(
+    cat <<'EOF'
+      --height 60%
+      --border sharp
+      --layout reverse
+      --prompt '󰥨 '
+      --pointer ❯
+      --marker ✔
+EOF
+  )"
+  export FZF_ALT_C_OPTS
 
   # Selection de fichiers
-  export FZF_CTRL_T_OPTS="\
-  --height 60% \
-  --border sharp \
-  --layout reverse \
-  --prompt '󰈞 ' \
-  --pointer ❯ \
-  --marker ✔"
+  FZF_CTRL_T_OPTS="$(
+    cat <<'EOF'
+      --height 60%
+      --border sharp
+      --layout reverse
+      --prompt '󰈞 '
+      --pointer ❯
+      --marker ✔
+      --preview="bat --color=always --style=-header {}"
+EOF
+  )"
+  export FZF_CTRL_T_OPTS
 
   # Navigation dans l'historique
-  export FZF_CTRL_R_OPTS="\
-  --height 60% \
-  --border sharp \
-  --layout reverse \
-  --prompt ' ' \
-  --pointer ❯ \
-  --marker ✔"
+  FZF_CTRL_R_OPTS="$(
+    cat <<'EOF'
+      --height 60%
+      --border sharp
+      --layout reverse
+      --prompt ' '
+      --pointer ❯
+      --marker ✔
+EOF
+  )"
+  export FZF_CTRL_R_OPTS
 
 fi
