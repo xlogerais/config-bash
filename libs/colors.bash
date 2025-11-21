@@ -58,11 +58,23 @@ function echo_reverse { echo -e "\e[7m${*}\e[0m"; }
 function echo_concealed { echo -e "\e[8m${*}\e[0m"; }
 
 # Affiche un message informatif stylisé sur la sortie d'erreur
-function echo_info { >&2 echo -e "\e[00;34;49m󰋼  ${*}\e[39;49;00m"; }
-function echo_warning { >&2 echo -e "\e[00;33;49m  ${*}\e[39;49;00m"; }
-function echo_error { >&2 echo -e "\e[00;01;31;49m  ${*}\e[39;49;00m"; }
-function echo_success { >&2 echo -e "\e[00;01;32;49m  ${*}\e[39;49;00m"; }
-function echo_failed { >&2 echo -e "\e[00;01;31;49m✖  ${*}\e[39;49;00m"; }
+function echo_info { >&2 echo -e "\e[00;34;49m󰋼 ${*}\e[39;49;00m"; }
+function echo_warning { >&2 echo -e "\e[00;33;49m ${*}\e[39;49;00m"; }
+function echo_error { >&2 echo -e "\e[00;01;31;49m ${*}\e[39;49;00m"; }
+function echo_success { >&2 echo -e "\e[00;01;32;49m ${*}\e[39;49;00m"; }
+function echo_failed { >&2 echo -e "\e[00;01;31;49m✖ ${*}\e[39;49;00m"; }
+
+function echo_verbose {
+  if [ -n "${VERBOSE}" ]; then
+    echo_faint "${*}" >&2
+  fi
+}
+
+function echo_debug {
+  if [ -n "${DEBUG}" ]; then
+    echo_faint "🐛 ${*}" >&2
+  fi
+}
 
 function echo_demo {
   echo_bold bold
@@ -77,4 +89,5 @@ function echo_demo {
   echo_error error
   echo_success success
   echo_failed failed
+  DEBUG=true echo_debug debug
 }
