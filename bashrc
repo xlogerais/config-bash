@@ -28,6 +28,7 @@ _source_dir_files "${BASEDIR}"/libs
 
 # Source 3rd party libs if they exists
 _source_file_if_exists "${BASEDIR}/3rd-party/complete-alias/complete_alias"
+_source_file_if_exists "${BASEDIR}/3rd-party/junegunn/fzf-git.sh/fzf-git.sh"
 
 # Early customization
 _source_dir_files "${BASEDIR}"/rc.before.d
