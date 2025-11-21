@@ -1,0 +1,49 @@
+#!/bin/bash
+
+# Function to update terminal/tmux title
+_update_terminal_title() {
+  local kubecontext dir gitrepo gitremote icon title
+
+  # Detect Kubernetes context (if kubectl is available)
+  if [ -n "${KUBECONFIG}" ]; then
+    if command -v kubectl >/dev/null 2>&1; then
+      kubecontext=$(kubectl config current-context 2>/dev/null)
+      if [ -n "$kubecontext" ]; then
+        title="󱃾 ${kubecontext}"
+      fi
+    fi
+  fi
+
+  # If no title is already set, check if we're in $HOME
+  if [ -z "${title}" ] && [ "$PWD" = "$HOME" ]; then
+    title="󱂵 ~"
+  fi
+
+  # If we're in a git repo display repo name with a nice icon
+  if [ -z "${title}" ] && gitrepo=$(git rev-parse --show-toplevel 2>/dev/null); then
+    dir=$(basename "${gitrepo}")
+
+    # Detect host from remote URL
+    gitremote=$(git remote get-url origin 2>/dev/null)
+    case "${gitremote}" in
+    *github.com*) icon="" ;; # nf-fa-github
+    *gitlab.com*) icon="" ;; # nf-fa-gitlab
+    *gitea*) icon="" ;;      # nf-linux-gitea
+    *) icon="" ;; # nf-dev-git
+    esac
+
+    title="${icon} ${dir}"
+  fi
+
+  # Set the title in tmux or terminal window
+  if [ -n "${title}" ]; then
+    if [ -n "$TMUX" ]; then
+      tmux rename-window "${title}"
+    else
+      printf '\033]0;%s\007' "${title}"
+    fi
+  fi
+}
+
+# Add the function to the PROMPT_COMMAND variable to have regular updates
+if [ "$TERM" != "linux" ]; then _prompt_command_add "_update_terminal_title"; fi
