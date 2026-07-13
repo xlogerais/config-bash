@@ -13,50 +13,79 @@ fi
 
 # DEBUG_BASHRC=true
 
-# Determine path to directory of this file (FIX: remove dependency to readlink for posix compliance)
-BASEDIR=$(
-	source_file=$(readlink -f "${BASH_SOURCE[0]}")
-	source_dir=$(dirname "${source_file}")
-	cd "${source_dir}" && pwd
-)
+
+# Define the path to the directory of this file if not already set
+if [ -z "${BASH_CONFIG_DIR}" ]; then
+  # Define a function to get the real path of a script
+  # (works for most cases : either sourced script or executed script, posix shells)
+  get_script_dir() {
+    local target
+    # Si appelé depuis un script (Bash), on regarde qui a appelé la fonction (${BASH_SOURCE[1]})
+    # Si la fonction est exécutée directement dans le terminal, on se rabat sur ${BASH_SOURCE[0]} ou ${0}
+    if [ -n "${BASH_SOURCE}" ]; then
+      if [ "${#BASH_SOURCE[@]}" -gt 1 ]; then
+        target="${BASH_SOURCE[1]}"
+      else
+        target="${BASH_SOURCE[0]}"
+      fi
+    elif [ -n "${ZSH_VERSION}" ]; then
+      target="${(%):-%x}"
+    else
+      target="${0}"
+    fi
+
+    # Résolution des liens symboliques POSIX
+    while [ -L "${target}" ]; do
+      local link
+      link=$(readlink "${target}")
+      case "${link}" in
+        /*) target="${link}" ;;
+        *)  target="$(dirname "${target}")/${link}" ;;
+      esac
+    done
+
+    (cd "$(dirname "${target}")" && pwd -P)
+  }
+  BASH_CONFIG_DIR=$(get_script_dir)
+fi
 
 # Source some helpers functions
-source "${BASEDIR}/_helpers.bash"
+source "${BASH_CONFIG_DIR}/_helpers.bash"
 
 # Source custom libs
-_source_dir_files "${BASEDIR}"/libs
+_source_dir_files "${BASH_CONFIG_DIR}"/libs
 
 # Source 3rd party libs if they exists
-_source_file_if_exists "${BASEDIR}/3rd-party/complete-alias/complete_alias"
-_source_file_if_exists "${BASEDIR}/3rd-party/junegunn/fzf-git.sh/fzf-git.sh"
+_source_file_if_exists "${BASH_CONFIG_DIR}/3rd-party/complete-alias/complete_alias"
+_source_file_if_exists "${BASH_CONFIG_DIR}/3rd-party/junegunn/fzf-git.sh/fzf-git.sh"
 
 # Early customization
-_source_dir_files "${BASEDIR}"/rc.before.d
+_source_dir_files "${BASH_CONFIG_DIR}"/rc.before.d
 
 # Source rc.d/*
-_source_dir_files "${BASEDIR}"/rc
-_source_dir_files "${BASEDIR}"/rc.d
+_source_dir_files "${BASH_CONFIG_DIR}"/rc
+_source_dir_files "${BASH_CONFIG_DIR}"/rc.d
 
 # Source functions definitions
 _source_file_if_exists ~/.bash_functions
-_source_file_if_exists "${BASEDIR}"/functions
-_source_dir_files "${BASEDIR}"/functions
-_source_dir_files "${BASEDIR}"/functions.d
+_source_file_if_exists "${BASH_CONFIG_DIR}"/functions
+_source_dir_files "${BASH_CONFIG_DIR}"/functions
+_source_dir_files "${BASH_CONFIG_DIR}"/functions.d
 
 # Source alias definitions
 _source_file_if_exists ~/.bash_aliases
-_source_file_if_exists "${BASEDIR}"/aliases
-_source_dir_files "${BASEDIR}"/aliases
-_source_dir_files "${BASEDIR}"/aliases.d
+_source_file_if_exists "${BASH_CONFIG_DIR}"/aliases
+_source_dir_files "${BASH_CONFIG_DIR}"/aliases
+_source_dir_files "${BASH_CONFIG_DIR}"/aliases.d
 
 # Source bash completion definitions
 # TODO: Améliorer cette partie pour éviter les erreurs quand aucun fichier n'existe
 for file in /etc/bash*completion /etc/profile.d/bash*completion*; do source "$file"; done
 
 _source_file_if_exists ~/.bash_completion
-_source_file_if_exists "${BASEDIR}"/completion
-_source_dir_files "${BASEDIR}"/completion
-_source_dir_files "${BASEDIR}"/completion.d
+_source_file_if_exists "${BASH_CONFIG_DIR}"/completion
+_source_dir_files "${BASH_CONFIG_DIR}"/completion
+_source_dir_files "${BASH_CONFIG_DIR}"/completion.d
 _source_dir_files ~/.nix-profile/share/bash-completion/completions
 
 if (command -v _complete_alias &>/dev/null); then
@@ -64,4 +93,4 @@ if (command -v _complete_alias &>/dev/null); then
 fi
 
 # Late customization
-_source_dir_files "${BASEDIR}"/rc.after.d
+_source_dir_files "${BASH_CONFIG_DIR}"/rc.after.d
