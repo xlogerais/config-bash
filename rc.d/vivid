@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if (command -v vivid &>/dev/null); then
+  THEME=one-dark # Use command `vivid themes` to see available themes
+  LS_COLORS="$(vivid generate ${THEME})"
+  export LS_COLORS
+fi
