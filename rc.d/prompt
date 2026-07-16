@@ -2,7 +2,9 @@
 
 # Customize the prompt
 
-MY_PROMPTS="powerline-go starship"
+# Indicate your preference order for prompt tools
+# The first one found available will be used
+MY_PROMPTS="starship powerline-go"
 
 for prompt in $MY_PROMPTS; do
 	if (command -v "$prompt" &>/dev/null); then
@@ -11,26 +13,26 @@ for prompt in $MY_PROMPTS; do
 	fi
 done
 
-case "$USE_PROMPT" in
+case "${USE_PROMPT}" in
 
+# https://starship.rs/
 "starship")
 	if (command -v starship &>/dev/null); then
-		# echo "Using $USE_PROMPT prompt"
 		eval "$(starship init bash)"
 	else
-		echo "$USE_PROMPT command not found"
+		echo "${USE_PROMPT} command not found"
 	fi
 	;;
 
+# https://github.com/justjanne/powerline-go
 "powerline-go")
 	if (command -v powerline-go &>/dev/null); then
-		# echo "Using $USE_PROMPT prompt"
 		function _update_ps1() {
 			PS1=$(powerline-go -jobs "$(jobs -p | wc -l)" -error $? -modules "ssh,host,wsl,user,cwd,direnv,venv,perms,git,jobs,exit,root" -modules-right "docker,docker-context,kube,terraform-workspace,termtitle" -newline)
 		}
 		if [ "$TERM" != "linux" ]; then _prompt_command_add "_update_ps1"; fi
 	else
-		echo "$USE_PROMPT command not found"
+		echo "${USE_PROMPT} command not found"
 	fi
 	;;
 
