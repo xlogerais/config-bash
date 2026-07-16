@@ -2,7 +2,14 @@
 
 # Customize the prompt
 
-USE_PROMPT=powerline-go
+MY_PROMPTS="powerline-go starship"
+
+for prompt in $MY_PROMPTS; do
+	if (command -v "$prompt" &>/dev/null); then
+		USE_PROMPT="$prompt"
+		break
+	fi
+done
 
 case "$USE_PROMPT" in
 
