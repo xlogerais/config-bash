@@ -1,7 +1,12 @@
 #!/bin/bash
 
+# INFO:
+#  vivid is a generator for the LS_COLORS environment variable that controls the colorized output of ls, tree, fd, bfs, dust and many other tools.
+# ➜ https://github.com/sharkdp/vivid
+# 💡Use command `vivid themes` to see available themes
+
 if (command -v vivid &>/dev/null); then
-  THEME=one-dark # Use command `vivid themes` to see available themes
+  THEME=tokyonight-moon
   LS_COLORS="$(vivid generate ${THEME})"
   export LS_COLORS
 fi
