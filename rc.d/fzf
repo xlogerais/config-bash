@@ -2,15 +2,24 @@
 
 if (command -v fzf &>/dev/null); then
 
+  # Shell integration
   source <(fzf --bash)
+
+  # Options par défaut
+  FZF_DEFAULT_OPTS="\
+  --height 60%
+  --border rounded
+  --layout reverse
+  --highlight-line \
+  --info=inline-right \
+  --ansi \
+  "
+  export FZF_DEFAULT_OPTS
 
   # Navigation vers un répertoire
   FZF_ALT_C_OPTS="$(
     cat <<'EOF'
-      --height 60%
-      --border sharp
-      --layout reverse
-      --prompt '󰥨 '
+      --prompt '󰥨  '
       --pointer ❯
       --marker ✔
 EOF
@@ -20,10 +29,7 @@ EOF
   # Selection de fichiers
   FZF_CTRL_T_OPTS="$(
     cat <<'EOF'
-      --height 60%
-      --border sharp
-      --layout reverse
-      --prompt '󰈞 '
+      --prompt '󰈞  '
       --pointer ❯
       --marker ✔
       --preview="bat --color=always --style=-header {}"
@@ -34,14 +40,32 @@ EOF
   # Navigation dans l'historique
   FZF_CTRL_R_OPTS="$(
     cat <<'EOF'
-      --height 60%
-      --border sharp
-      --layout reverse
-      --prompt ' '
+      --prompt '  '
       --pointer ❯
       --marker ✔
 EOF
   )"
   export FZF_CTRL_R_OPTS
+
+  # Theme tokyonight
+  FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS} \
+  --color=bg+:#283457 \
+  --color=bg:#16161e \
+  --color=border:#27a1b9 \
+  --color=fg:#c0caf5 \
+  --color=gutter:#16161e \
+  --color=header:#ff9e64 \
+  --color=hl+:#2ac3de \
+  --color=hl:#2ac3de \
+  --color=info:#545c7e \
+  --color=marker:#ff007c \
+  --color=pointer:#ff007c \
+  --color=prompt:#2ac3de \
+  --color=query:#c0caf5:regular \
+  --color=scrollbar:#27a1b9 \
+  --color=separator:#ff9e64 \
+  --color=spinner:#ff007c \
+  "
+  export FZF_DEFAULT_OPTS
 
 fi
