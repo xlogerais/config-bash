@@ -39,9 +39,12 @@ if [ -z "${BASH_CONFIG_DIR}" ]; then
   BASH_CONFIG_DIR=$(get_script_dir)
 fi
 
-if [ -f "${BASH_CONFIG_DIR}"/profile ]; then source "${BASH_CONFIG_DIR}"/profile; fi
-if [ -d "${BASH_CONFIG_DIR}"/profile ]; then for file in "${BASH_CONFIG_DIR}"/profile/*; do source "$file"; done; fi
-if [ -d "${BASH_CONFIG_DIR}"/profile.d ]; then for file in "${BASH_CONFIG_DIR}"/profile.d/*; do source "$file"; done; fi
+# Source some helpers functions
+source "${BASH_CONFIG_DIR}/_helpers.bash"
+
+_source_file_if_exists "${BASH_CONFIG_DIR}/profile"
+_source_dir_files "${BASH_CONFIG_DIR}/profile"
+_source_dir_files "${BASH_CONFIG_DIR}/profile.d"
 
 # This file is sourced by bash for login shells.  The following line
 # runs your .bashrc and is recommended by the bash info pages.
