@@ -1,5 +1,3 @@
-#!/bin/bash
-
 if (which mc &> /dev/null); then
   if [ "$TERM" = "rxvt-unicode" ]; then
     alias mc="TERM=rxvt-unicode-256color mc"

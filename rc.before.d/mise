@@ -1,5 +1,3 @@
-#!/bin/bash
-
 if (command -v mise &>/dev/null); then
 
 	# activate mise-en-place (https://mise.jdx.dev/)

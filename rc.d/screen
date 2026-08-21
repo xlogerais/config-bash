@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # GNU Screen stuff
 if ( which screen &> /dev/null )
 then

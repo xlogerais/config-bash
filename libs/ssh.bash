@@ -1,5 +1,3 @@
-#!/bin/bash
-
 function ssh_clean_known_hosts() {
 	if [ -z "$1" ]; then
 		echo "No arguments given. Cleaning ~/.ssh/known_hosts"

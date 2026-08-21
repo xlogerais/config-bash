@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
 if [ -n "${KITTY_INSTALLATION_DIR}" ]; then
   alias ssh="kitty +kitten ssh"

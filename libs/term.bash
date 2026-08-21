@@ -1,5 +1,3 @@
-#!/bin/bash
-
 function term_change_title {
 	case $TERM in
 	# Change the window title of X terminals

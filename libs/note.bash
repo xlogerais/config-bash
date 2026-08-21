@@ -1,5 +1,3 @@
-#!/bin/bash
-
 note() {
     # if file doesn't exist, create it
     if [[ ! -f $HOME/.notes ]]; then

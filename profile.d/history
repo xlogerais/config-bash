@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # Customize history format
 export HISTSIZE=5000
 export HISTFILESIZE=20000

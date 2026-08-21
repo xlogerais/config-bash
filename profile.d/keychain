@@ -1,5 +1,3 @@
-#!/bin/bash
-
 if (command -v keychain &>/dev/null); then
   eval "$(keychain --inherit any --quiet --noask ~/.ssh/id_{rsa,ed25519})"
 fi

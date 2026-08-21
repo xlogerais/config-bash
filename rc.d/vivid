@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # INFO:
 #  vivid is a generator for the LS_COLORS environment variable that controls the colorized output of ls, tree, fd, bfs, dust and many other tools.
 # ➜ https://github.com/sharkdp/vivid

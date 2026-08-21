@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # Git
 if [ -x /usr/bin/git ]; then
     alias gs='git status'

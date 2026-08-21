@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # ble.sh () installed from nix
 if (command -v blesh-share &>/dev/null); then
 	source "$(blesh-share)"/ble.sh --attach=none # does not work currently

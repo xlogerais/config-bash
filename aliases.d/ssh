@@ -1,4 +1,2 @@
-#!/bin/bash
-
 # SSH
 alias ssh!='ssh -q -oStrictHostKeyChecking=no -oIdentitiesOnly=yes'

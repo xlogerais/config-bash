@@ -1,5 +1,3 @@
-#!/bin/bash
-
 if (command -v tea &>/dev/null); then
 	source <(tea completion bash)
 fi

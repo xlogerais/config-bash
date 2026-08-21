@@ -1,5 +1,3 @@
-#!/bin/bash
-
 encpasswd() {
         local password_clear=$1
         local password_md5hash=$(openssl passwd -1 "$password_clear")

@@ -1,5 +1,3 @@
-#!/bin/bash
-
 function devenv() {
 
   local status

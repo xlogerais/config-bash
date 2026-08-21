@@ -1,5 +1,3 @@
-#!/bin/bash
-
 if [ -f ~/.asdf/asdf.sh ]; then
 
 	# activate asdf

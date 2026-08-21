@@ -1,5 +1,3 @@
-#!/bin/bash
-
 todo() {
     if [[ ! -f $HOME/.todo ]]; then
         touch $HOME/.todo

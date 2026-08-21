@@ -1,5 +1,3 @@
-#!/bin/bash
-
 #ANSI CODES
 #Code Effect
 #0    All attributes off

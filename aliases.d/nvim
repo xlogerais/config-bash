@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # Vim Editor
 if [ -x ~/AppImages/nvim.appimage ]
 then
