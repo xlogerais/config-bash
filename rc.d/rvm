@@ -5,4 +5,4 @@
 [[ -r "${HOME}/.rvm/scripts/completion" ]] && source "${HOME}/.rvm/scripts/completion"
 
 # Add RVM to PATH for scripting
-[[ -r "${HOME}/.rvm/bin" ]] && PATH="${PATH}:${HOME}/.rvm/bin"
+[[ -r "${HOME}/.rvm/bin" ]] && _path_add "${HOME}/.rvm/bin"
