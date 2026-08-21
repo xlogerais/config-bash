@@ -13,12 +13,12 @@ if [[ -z "${DISPLAY}" && $(id -u) -ge 1000 ]] ; then
             3) VT=vt3 ;;
         esac
 
-        if ( which ck-launch-session &> /dev/null )
+        if ( command -v ck-launch-session &> /dev/null )
         then
             EXEC="exec ck-launch-session"
         fi
 
-        if ( which startx &> /dev/null )
+        if ( command -v startx &> /dev/null )
         then
             ${EXEC} startx 1> ~/.log/xsession-errors 2>&1 -- "${VT}"
         fi

@@ -1,5 +1,5 @@
 # GNU Screen stuff
-if ( which screen &> /dev/null )
+if ( command -v screen &> /dev/null )
 then
   if [[ ${TERM} != screen* ]]
   then
