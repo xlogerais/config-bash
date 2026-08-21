@@ -1,7 +1,3 @@
-function basedir() {
-	(cd "$(dirname \"$-2\")" && pwd)
-}
-
 function _source_file_if_exists() {
 	if [ -r "$1" ]; then
 		test -n "${DEBUG_BASHRC}" && echo "-- Sourcing file $1"
