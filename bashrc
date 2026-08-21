@@ -80,7 +80,7 @@ _source_dir_files "${BASH_CONFIG_DIR}"/aliases.d
 
 # Source bash completion definitions
 # TODO: Améliorer cette partie pour éviter les erreurs quand aucun fichier n'existe
-for file in /etc/bash*completion /etc/profile.d/bash*completion*; do source "$file"; done
+for file in /etc/bash*completion /etc/profile.d/bash*completion*; do source "${file}"; done
 
 _source_file_if_exists ~/.bash_completion
 _source_file_if_exists "${BASH_CONFIG_DIR}"/completion
@@ -89,7 +89,7 @@ _source_dir_files "${BASH_CONFIG_DIR}"/completion.d
 _source_dir_files ~/.nix-profile/share/bash-completion/completions
 
 if (command -v _complete_alias &>/dev/null); then
-	for alias in $(alias -p | awk '{print $2}' | awk -F= '{print $1}'); do complete -o default -F _complete_alias "$alias"; done
+	for alias in $(alias -p | awk '{print $2}' | awk -F= '{print $1}'); do complete -o default -F _complete_alias "${alias}"; done
 fi
 
 # Late customization

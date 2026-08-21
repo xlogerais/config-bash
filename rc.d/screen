@@ -1,7 +1,7 @@
 # GNU Screen stuff
 if ( which screen &> /dev/null )
 then
-  if [[ $TERM != screen* ]]
+  if [[ ${TERM} != screen* ]]
   then
     if [ "$(screen -ls | sed -ne 's/[[:space:]]//' -ne 's/(Attached)// p')" ]
     then

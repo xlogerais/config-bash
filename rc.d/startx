@@ -1,10 +1,10 @@
 # Auto startx depending on the VT
 
-if [[ -z "$DISPLAY" && $(id -u) -ge 1000 ]] ; then
+if [[ -z "${DISPLAY}" && $(id -u) -ge 1000 ]] ; then
 
     TTY=$(tty)
-    if [ "$TTY" == "not a tty" ]; then return; fi
-    if [ "${TTY/tty}" != "$TTY" -a $(basename ${TTY/tty}) -le 3 ]
+    if [ "${TTY}" == "not a tty" ]; then return; fi
+    if [ "${TTY/tty}" != "${TTY}" -a "$(basename "${TTY/tty}")" -le 3 ]
     then
 
         case $(tty | cut -b9-) in
@@ -20,7 +20,7 @@ if [[ -z "$DISPLAY" && $(id -u) -ge 1000 ]] ; then
 
         if ( which startx &> /dev/null )
         then
-            $EXEC startx 1> ~/.log/xsession-errors 2>&1 -- $VT
+            ${EXEC} startx 1> ~/.log/xsession-errors 2>&1 -- "${VT}"
         fi
     fi
 fi

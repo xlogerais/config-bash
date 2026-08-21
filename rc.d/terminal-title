@@ -6,14 +6,14 @@ _update_terminal_title() {
   if [ -n "${KUBECONFIG}" ]; then
     if command -v kubectl >/dev/null 2>&1; then
       kubecontext=$(kubectl config current-context 2>/dev/null)
-      if [ -n "$kubecontext" ]; then
+      if [ -n "${kubecontext}" ]; then
         title="󱃾 ${kubecontext}"
       fi
     fi
   fi
 
-  # If no title is already set, check if we're in $HOME
-  if [ -z "${title}" ] && [ "$PWD" = "$HOME" ]; then
+  # If no title is already set, check if we're in ${HOME}
+  if [ -z "${title}" ] && [ "${PWD}" = "${HOME}" ]; then
     title="󱂵 ~"
   fi
 
@@ -35,7 +35,7 @@ _update_terminal_title() {
 
   # Set the title in tmux or terminal window
   if [ -n "${title}" ]; then
-    if [ -n "$TMUX" ]; then
+    if [ -n "${TMUX}" ]; then
       tmux rename-window "${title}"
     else
       printf '\033]0;%s\007' "${title}"
@@ -44,4 +44,4 @@ _update_terminal_title() {
 }
 
 # Add the function to the PROMPT_COMMAND variable to have regular updates
-if [ "$TERM" != "linux" ]; then _prompt_command_add "_update_terminal_title"; fi
+if [ "${TERM}" != "linux" ]; then _prompt_command_add "_update_terminal_title"; fi
