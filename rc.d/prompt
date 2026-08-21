@@ -4,11 +4,11 @@
 
 # Indicate your preference order for prompt tools
 # The first one found available will be used
-MY_PROMPTS="starship powerline-go"
+MY_PROMPT_TOOLS="starship powerline-go"
 
-for prompt in $MY_PROMPTS; do
-	if (command -v "$prompt" &>/dev/null); then
-		USE_PROMPT="$prompt"
+for prompt in ${MY_PROMPT_TOOLS}; do
+	if (command -v "${prompt}" &>/dev/null); then
+		USE_PROMPT="${prompt}"
 		break
 	fi
 done
@@ -30,7 +30,7 @@ case "${USE_PROMPT}" in
 		function _update_ps1() {
 			PS1=$(powerline-go -jobs "$(jobs -p | wc -l)" -error $? -modules "ssh,host,wsl,user,cwd,direnv,venv,perms,git,jobs,exit,root" -modules-right "docker,docker-context,kube,terraform-workspace,termtitle" -newline)
 		}
-		if [ "$TERM" != "linux" ]; then _prompt_command_add "_update_ps1"; fi
+		if [ "${TERM}" != "linux" ]; then _prompt_command_add "_update_ps1"; fi
 	else
 		echo "${USE_PROMPT} command not found"
 	fi
@@ -38,7 +38,7 @@ case "${USE_PROMPT}" in
 
 *)
 	# Default simple prompt
-	if [ "$UID" -eq 0 ]; then
+	if [ "${UID}" -eq 0 ]; then
 		export PS1='\[\e[01;31m\]\u@\h\[\e[01;34m\] \w \$\[\e[0m\] '
 	else
 		export PS1='\[\e[01;32m\]\u@\h\[\e[01;34m\] \w \$\[\e[0m\] '

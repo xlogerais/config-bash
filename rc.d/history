@@ -1,0 +1,50 @@
+#!/bin/bash
+
+# Customize shell history search
+
+# Indicate your preference order for history tools
+# The first one found available will be used
+MY_HISTORY_TOOLS="atuin mcfly"
+
+for tool in ${MY_HISTORY_TOOLS}; do
+	if (command -v "${tool}" &>/dev/null); then
+		USE_HISTORY_TOOL="${tool}"
+		break
+	fi
+done
+
+case "${USE_HISTORY_TOOL}" in
+
+# https://atuin.sh/
+"atuin")
+	if (command -v atuin &>/dev/null); then
+		eval "$(atuin init bash)"
+	else
+		echo "${USE_HISTORY_TOOL} command not found"
+	fi
+	;;
+
+# https://github.com/cantino/mcfly
+"mcfly")
+	if (command -v mcfly &>/dev/null); then
+		export MCFLY_PROMPT="❯ "
+		export MCFLY_INTERFACE_VIEW=BOTTOM
+		export MCFLY_RESULTS=50
+		export MCFLY_RESULTS_SORT=LAST_RUN
+		# export MCFLY_KEY_SCHEME=vim
+		export MCFLY_FUZZY=3
+		eval "$(mcfly init bash)"
+	else
+		echo "${USE_HISTORY_TOOL} command not found"
+	fi
+	;;
+
+*)
+	# Default sane bash history behavior
+	export HISTCONTROL=ignoreboth:erasedups
+	export HISTSIZE=10000
+	export HISTFILESIZE=20000
+	shopt -s histappend
+	;;
+
+esac
