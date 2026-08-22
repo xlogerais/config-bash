@@ -2,7 +2,4 @@
 
 # git clone https://github.com/riywo/anyenv ${HOME}/.anyenv
 
-if [ -d "${HOME}/.anyenv/bin" ]
-then
-  export PATH="${HOME}/.anyenv/bin:${PATH}"
-fi
+_path_prepend "${HOME}/.anyenv/bin"
