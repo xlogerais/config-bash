@@ -1,6 +1,6 @@
 # Customize PATH
-_path_add "${HOME}/.bin"
-_path_add "${HOME}/.local/bin"
+_path_append "${HOME}/.bin"
+_path_append "${HOME}/.local/bin"
 
-_path_add "${HOME}/bin"
-_path_add "${HOME}/scripts"
+_path_append "${HOME}/bin"
+_path_append "${HOME}/scripts"
