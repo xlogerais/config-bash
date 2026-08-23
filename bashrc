@@ -84,6 +84,19 @@ _source_dir_files "${BASH_CONFIG_DIR}"/aliases.d
 # /etc/profile.d/bash_completion.sh for login shells and the package's
 # own non-login hook — no need to re-source it manually here.
 
+# Use bash-completion, if available, and avoid double-sourcing
+[[ $PS1 &&
+  ! ${BASH_COMPLETION_VERSINFO:-} &&
+  -f /usr/share/bash-completion/bash_completion ]] &&
+    . /usr/share/bash-completion/bash_completion
+
+# Location for user bash completion
+# ${BASH_COMPLETION_USER_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/bash-completion}/completions
+
+# See https://serverfault.com/questions/506612/standard-place-for-user-defined-bash-completion-d-scripts
+# Recommended dirs
+# - ~/.bash_completion.d ->  ${XDG_DATA_HOME:-$HOME/.local/share}/bash-completion
+# - ~/.bash_completion -> ${XDG_CONFIG_HOME:-$HOME/.config}/bash_completion
 _source_file_if_exists ~/.bash_completion
 _source_file_if_exists "${BASH_CONFIG_DIR}"/completion
 _source_dir_files "${BASH_CONFIG_DIR}"/completion
