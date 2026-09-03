@@ -1,4 +1,4 @@
-if (command -v stern &> /dev/null)
+if command -v stern &> /dev/null
 then
   source <(stern --completion bash)
 fi

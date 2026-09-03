@@ -1,4 +1,4 @@
-if (command -v fzf &>/dev/null); then
+if command -v fzf &>/dev/null; then
 
   # Shell integration
   source <(fzf --bash)

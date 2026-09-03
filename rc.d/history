@@ -5,7 +5,7 @@
 MY_HISTORY_TOOLS="atuin mcfly"
 
 for tool in ${MY_HISTORY_TOOLS}; do
-	if (command -v "${tool}" &>/dev/null); then
+	if command -v "${tool}" &>/dev/null; then
 		USE_HISTORY_TOOL="${tool}"
 		break
 	fi
@@ -15,7 +15,7 @@ case "${USE_HISTORY_TOOL}" in
 
 # https://atuin.sh/
 "atuin")
-	if (command -v atuin &>/dev/null); then
+	if command -v atuin &>/dev/null; then
 		eval "$(atuin init bash)"
 	else
 		echo "${USE_HISTORY_TOOL} command not found"
@@ -24,7 +24,7 @@ case "${USE_HISTORY_TOOL}" in
 
 # https://github.com/cantino/mcfly
 "mcfly")
-	if (command -v mcfly &>/dev/null); then
+	if command -v mcfly &>/dev/null; then
 		export MCFLY_PROMPT="❯ "
 		export MCFLY_INTERFACE_VIEW=BOTTOM
 		export MCFLY_RESULTS=50

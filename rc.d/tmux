@@ -1,5 +1,5 @@
 # GNU Screen stuff
-if (command -v tmux &>/dev/null); then
+if command -v tmux &>/dev/null; then
   if [ "$(pgrep -u "${UID}" "tmux" | wc -l)" -gt 0 ]; then
     if [[ ${TERM} != screen* ]]; then
       nb_sessions=$(tmux list-session | wc -l)

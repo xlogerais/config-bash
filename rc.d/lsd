@@ -1,4 +1,4 @@
-if (which lsd &> /dev/null)
+if which lsd &> /dev/null
 then
 
   # create a aliases

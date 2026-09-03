@@ -3,7 +3,7 @@
 # ➜ https://github.com/sharkdp/vivid
 # 💡Use command `vivid themes` to see available themes
 
-if (command -v vivid &>/dev/null); then
+if command -v vivid &>/dev/null; then
   THEME=tokyonight-moon
   LS_COLORS="$(vivid generate ${THEME})"
   export LS_COLORS
