@@ -1,9 +1,7 @@
-#!/bin/bash
-
 # https://github.com/riywo/anyenv
 
-# git clone https://github.com/riywo/anyenv $HOME/.anyenv
+# git clone https://github.com/riywo/anyenv ${HOME}/.anyenv
 
-if (which anyenv &>/dev/null); then
+if (command -v anyenv &>/dev/null); then
   eval "$(anyenv init -)"
 fi

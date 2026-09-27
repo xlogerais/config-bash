@@ -1,5 +1,3 @@
-#!/bin/bash
-
 function ip_to_hex ()
 {
 	if test -e "$1" ; then echo "Usage : $0 XXX.XXX.XXX.XXX" ; return ; fi

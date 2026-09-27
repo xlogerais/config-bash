@@ -1,5 +1,3 @@
-#!/bin/bash
-
 if (command -v k3d &>/dev/null); then
 	source <(k3d completion bash)
 fi

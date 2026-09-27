@@ -1,8 +1,8 @@
 #!/bin/bash
 
 _path_add() {
-    if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
-        PATH="${PATH:+"$PATH:"}$1"
+    if [ -d "$1" ] && [[ ":${PATH}:" != *":$1:"* ]]; then
+        PATH="${PATH:+"${PATH}:"}$1"
     fi
 }
 

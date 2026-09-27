@@ -79,9 +79,24 @@ _source_dir_files "${BASH_CONFIG_DIR}"/aliases
 _source_dir_files "${BASH_CONFIG_DIR}"/aliases.d
 
 # Source bash completion definitions
-# TODO: Améliorer cette partie pour éviter les erreurs quand aucun fichier n'existe
-for file in /etc/bash*completion /etc/profile.d/bash*completion*; do source "$file"; done
+# System-wide bash completion (bash-completion package) is expected to
+# already be wired by the distro itself, typically via
+# /etc/profile.d/bash_completion.sh for login shells and the package's
+# own non-login hook — no need to re-source it manually here.
 
+# Use bash-completion, if available, and avoid double-sourcing
+[[ $PS1 &&
+  ! ${BASH_COMPLETION_VERSINFO:-} &&
+  -f /usr/share/bash-completion/bash_completion ]] &&
+    . /usr/share/bash-completion/bash_completion
+
+# Location for user bash completion
+# ${BASH_COMPLETION_USER_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/bash-completion}/completions
+
+# See https://serverfault.com/questions/506612/standard-place-for-user-defined-bash-completion-d-scripts
+# Recommended dirs
+# - ~/.bash_completion.d ->  ${XDG_DATA_HOME:-$HOME/.local/share}/bash-completion
+# - ~/.bash_completion -> ${XDG_CONFIG_HOME:-$HOME/.config}/bash_completion
 _source_file_if_exists ~/.bash_completion
 _source_file_if_exists "${BASH_CONFIG_DIR}"/completion
 _source_dir_files "${BASH_CONFIG_DIR}"/completion
@@ -89,7 +104,7 @@ _source_dir_files "${BASH_CONFIG_DIR}"/completion.d
 _source_dir_files ~/.nix-profile/share/bash-completion/completions
 
 if (command -v _complete_alias &>/dev/null); then
-	for alias in $(alias -p | awk '{print $2}' | awk -F= '{print $1}'); do complete -o default -F _complete_alias "$alias"; done
+	for alias in $(alias -p | awk '{print $2}' | awk -F= '{print $1}'); do complete -o default -F _complete_alias "${alias}"; done
 fi
 
 # Late customization

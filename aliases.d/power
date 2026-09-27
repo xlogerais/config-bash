@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # Power
 alias reboot='sudo reboot'
 alias halt='sudo halt'

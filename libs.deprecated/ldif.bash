@@ -12,5 +12,5 @@ function ldifparse ()
 	if (length) print
 		next
 	}
-	{print}' "$FILE"
+	{print}' "${FILE}"
 }

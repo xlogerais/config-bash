@@ -1,5 +1,3 @@
-#!/bin/bash
-
 function devenv() {
 
   local status
@@ -11,7 +9,7 @@ function devenv() {
   if [ "${status}" != "RUNNING" ]; then lxc start devenv; fi
 
   # Rename tmux window if inside tmux
-  if [ -n "$TMUX" ]; then tmux rename-window "devenv"; fi
+  if [ -n "${TMUX}" ]; then tmux rename-window "devenv"; fi
 
   # Login as user xavier
   lxc exec devenv -- login -f xavier

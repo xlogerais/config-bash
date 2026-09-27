@@ -188,7 +188,7 @@ vm_create_magick2() {
   template=${3}
 
   # Define ressources based on template
-  case $template in
+  case ${template} in
     small)
       vcpus="1,maxvcpus=2"
       memory="1024,maxmemory=2048"
@@ -262,7 +262,7 @@ _hypervisors() {
   if [ -e ~/.ssh/known_hosts ]; then
     known_hypervisors=$(cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | sed -e 's/,.*//g' | grep -v "\[" | grep -i hypervisor | uniq)
   fi
-  echo $configured_hypervisors $known_hypervisors
+  echo "${configured_hypervisors}" "${known_hypervisors}"
 }
 
 #complete -W "$(cat ~/.ssh/config | egrep  -i "^\s*host\s+[a-zA-Z]" | sed -e "s/^host\s*//i" | grep -i hypervisor)" hypervisor_connect

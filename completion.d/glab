@@ -1,5 +1,3 @@
-#!/bin/bash
-
 if (command -v glab &>/dev/null); then
 	source <(glab completion)
 fi

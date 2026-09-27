@@ -1,5 +1,3 @@
-#!/bin/bash
-
 function urxvt_set_font
 {
         # set font

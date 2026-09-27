@@ -1,5 +1,3 @@
-#!/bin/bash
-
 if (asdf which direnv &>/dev/null); then
 	# Hook direnv into your shell.
 	eval "$(asdf exec direnv hook bash)"
